@@ -1,0 +1,251 @@
+﻿
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+  <meta charset="UTF-8">
+
+  <meta name="viewport"
+        content="width=device-width, initial-scale=1.0">
+
+  <title>
+    Forgot Password - BusFlux
+  </title>
+
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+
+  <link rel="stylesheet"
+        href="style.css">  <link rel="stylesheet" href="theme.css">
+
+
+  <!-- PWA Manifest and Mobile Web App Support -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#1a1c24">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="apple-touch-icon" href="icons/icon-192x192.png">
+</head>
+
+<body>
+
+  <!-- HEADER -->
+
+  <header class="main-header">
+
+    <div class="nav-container">
+
+      <a href="index.html"
+         class="logo">
+
+        <i class="fas fa-bus-alt"></i>
+
+        BusFlux
+
+      </a>
+
+      <ul class="nav-links">
+
+        <li>
+          <a href="index.html">
+            Home
+          </a>
+        </li>
+
+        <li>
+          <a href="login.html">
+            Login
+          </a>
+        </li>
+
+      </ul>
+
+    </div>
+
+  </header>
+
+
+
+  <!-- CONTAINER -->
+
+  <div class="container">
+
+    <h1>
+
+      <span>Forgot</span>
+
+      Password
+
+    </h1>
+
+    <p class="subtitle">
+
+      Reset your BusFlux account password
+
+    </p>
+
+
+
+    <!-- FORGOT FORM -->
+
+    <form id="forgotForm">
+
+
+
+      <!-- EMAIL -->
+
+      <div class="form-group">
+
+        <label class="form-label">
+
+          Email Address
+
+        </label>
+
+        <div class="input-wrapper">
+
+          <input
+            type="email"
+            id="forgotEmail"
+            placeholder="Enter your email"
+            required
+          >
+
+          <i class="fas fa-envelope"></i>
+
+        </div>
+
+      </div>
+
+
+
+      <!-- OTP -->
+
+      <div class="form-group">
+
+        <label class="form-label">
+
+          OTP
+
+        </label>
+
+        <div class="input-wrapper">
+
+          <input
+            type="text"
+            id="forgotOtp"
+            placeholder="Enter OTP"
+          >
+
+          <i class="fas fa-shield-alt"></i>
+
+        </div>
+
+      </div>
+
+
+
+      <!-- NEW PASSWORD -->
+
+      <div class="form-group">
+
+        <label class="form-label">
+
+          New Password
+
+        </label>
+
+        <div class="input-wrapper">
+
+          <input
+            type="password"
+            id="newPassword"
+            placeholder="Enter new password"
+          >
+
+          <i class="fas fa-lock"></i>
+
+        </div>
+
+      </div>
+
+
+
+      <!-- SEND OTP -->
+
+      <button
+        type="button"
+        onclick="forgotPassword()"
+      >
+
+        <i class="fas fa-paper-plane"></i>
+
+        Send Reset OTP
+
+      </button>
+
+
+
+      <!-- RESET BUTTON -->
+
+      <button
+        type="button"
+        onclick="resetPassword()"
+        style="margin-top:15px;"
+      >
+
+        <i class="fas fa-key"></i>
+
+        Reset Password
+
+      </button>
+
+    </form>
+
+
+
+    <!-- MESSAGE -->
+
+    <p id="forgotMessage"
+       style="
+         text-align:center;
+         margin-top:15px;
+         color:var(--text-muted);
+       ">
+    </p>
+
+
+
+    <!-- LOGIN LINK -->
+
+    <div class="form-footer-link">
+
+      Remember password?
+
+      <a href="login.html">
+
+        Login here
+
+      </a>
+
+    </div>
+
+  </div>
+
+
+
+  <script src="script.js?v=10"></script>
+
+</body>
+
+</html>
+
+
+
+
+
+
+
+
+

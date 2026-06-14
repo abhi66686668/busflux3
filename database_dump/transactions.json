@@ -1,0 +1,110 @@
+[
+  {
+    "_id": "6a1e79373899cdf304e48d45",
+    "userId": "6a1df230a7b8b4502a2a9964",
+    "amount": 500,
+    "bonus": 100,
+    "totalCredit": 600,
+    "method": "Razorpay",
+    "status": "Completed",
+    "createdAt": "2026-06-02T06:33:27.935Z",
+    "updatedAt": "2026-06-02T06:33:27.935Z",
+    "__v": 0
+  },
+  {
+    "_id": "6a2367800abcc80ae838786d",
+    "userId": "6a1e0c5ebdfd1cf4aad86f6d",
+    "amount": 100,
+    "bonus": 30,
+    "totalCredit": 130,
+    "method": "Razorpay",
+    "status": "Completed",
+    "createdAt": "2026-06-06T00:19:12.878Z",
+    "updatedAt": "2026-06-06T00:19:12.878Z",
+    "__v": 0
+  },
+  {
+    "_id": "6a239d4bef56a468e3269455",
+    "userId": "6a1e0c5ebdfd1cf4aad86f6d",
+    "amount": 500,
+    "bonus": 150,
+    "totalCredit": 650,
+    "method": "UPI (Demo)",
+    "status": "Completed",
+    "createdAt": "2026-06-06T04:08:43.805Z",
+    "updatedAt": "2026-06-06T04:08:43.805Z",
+    "__v": 0
+  },
+  {
+    "_id": "6a23a991c47294860aebae2e",
+    "userId": "6a23a971c47294860aebae2c",
+    "amount": 500,
+    "bonus": 150,
+    "totalCredit": 650,
+    "method": "UPI (Demo)",
+    "status": "Completed",
+    "createdAt": "2026-06-06T05:01:05.564Z",
+    "updatedAt": "2026-06-06T05:01:05.564Z",
+    "__v": 0
+  },
+  {
+    "_id": "6a23a9b2c47294860aebae2f",
+    "userId": "6a23a971c47294860aebae2c",
+    "amount": 500,
+    "bonus": 150,
+    "totalCredit": 650,
+    "method": "UPI (Demo)",
+    "status": "Completed",
+    "createdAt": "2026-06-06T05:01:38.143Z",
+    "updatedAt": "2026-06-06T05:01:38.143Z",
+    "__v": 0
+  },
+  {
+    "_id": "6a23aaa416bd8f0add180859",
+    "userId": "6a23a971c47294860aebae2c",
+    "amount": 500,
+    "bonus": 150,
+    "totalCredit": 650,
+    "method": "UPI (Demo)",
+    "status": "Completed",
+    "createdAt": "2026-06-06T05:05:40.142Z",
+    "updatedAt": "2026-06-06T05:05:40.142Z",
+    "__v": 0
+  },
+  {
+    "_id": "6a23aab416bd8f0add18085b",
+    "userId": "6a23a971c47294860aebae2c",
+    "amount": 500,
+    "bonus": 150,
+    "totalCredit": 650,
+    "method": "UPI (Demo)",
+    "status": "Completed",
+    "createdAt": "2026-06-06T05:05:56.080Z",
+    "updatedAt": "2026-06-06T05:05:56.080Z",
+    "__v": 0
+  },
+  {
+    "_id": "6a23aabf16bd8f0add18085d",
+    "userId": "6a23a971c47294860aebae2c",
+    "amount": 500,
+    "bonus": 150,
+    "totalCredit": 650,
+    "method": "UPI (Demo)",
+    "status": "Completed",
+    "createdAt": "2026-06-06T05:06:07.903Z",
+    "updatedAt": "2026-06-06T05:06:07.903Z",
+    "__v": 0
+  },
+  {
+    "_id": "6a243eae8463022287d440d4",
+    "userId": "6a22f3d6fcc278fc52048967",
+    "amount": 500,
+    "bonus": 150,
+    "totalCredit": 650,
+    "method": "UPI (Demo)",
+    "status": "Completed",
+    "createdAt": "2026-06-06T15:37:18.240Z",
+    "updatedAt": "2026-06-06T15:37:18.240Z",
+    "__v": 0
+  }
+]

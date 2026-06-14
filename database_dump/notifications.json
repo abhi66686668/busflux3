@@ -1,0 +1,167 @@
+[
+  {
+    "_id": "6a23a76d5e1f4926badafe6d",
+    "title": "New User Registered",
+    "message": "deeksha (deeksha123@gmail.com) just joined BusFlux.",
+    "type": "info",
+    "read": true,
+    "targetRole": "admin",
+    "targetUser": null,
+    "createdAt": "2026-06-06T04:51:57.943Z",
+    "__v": 0
+  },
+  {
+    "_id": "6a23a971c47294860aebae2d",
+    "title": "New User Registered",
+    "message": "dileep (dileep123@gmail.com) just joined BusFlux.",
+    "type": "info",
+    "read": false,
+    "targetRole": "admin",
+    "targetUser": null,
+    "createdAt": "2026-06-06T05:00:33.320Z",
+    "__v": 0
+  },
+  {
+    "_id": "6a23aaa416bd8f0add18085a",
+    "title": "Wallet Recharge",
+    "message": "dileep recharged their wallet with ₹500 (+₹150 bonus).",
+    "type": "info",
+    "read": false,
+    "targetRole": "admin",
+    "targetUser": null,
+    "createdAt": "2026-06-06T05:05:40.175Z",
+    "__v": 0
+  },
+  {
+    "_id": "6a23aab416bd8f0add18085c",
+    "title": "Wallet Recharge",
+    "message": "dileep recharged their wallet with ₹500 (+₹150 bonus).",
+    "type": "info",
+    "read": false,
+    "targetRole": "admin",
+    "targetUser": null,
+    "createdAt": "2026-06-06T05:05:56.109Z",
+    "__v": 0
+  },
+  {
+    "_id": "6a23aabf16bd8f0add18085e",
+    "title": "Wallet Recharge",
+    "message": "dileep recharged their wallet with ₹500 (+₹150 bonus).",
+    "type": "info",
+    "read": false,
+    "targetRole": "admin",
+    "targetUser": null,
+    "createdAt": "2026-06-06T05:06:07.956Z",
+    "__v": 0
+  },
+  {
+    "_id": "6a23aad916bd8f0add180860",
+    "title": "New Wallet Booking",
+    "message": "dileep booked 1 seat(s) on GOLDEN using wallet balance (₹15).",
+    "type": "success",
+    "read": false,
+    "targetRole": "admin",
+    "targetUser": null,
+    "createdAt": "2026-06-06T05:06:33.573Z",
+    "__v": 0
+  },
+  {
+    "_id": "6a23ab0316bd8f0add180862",
+    "title": "New Wallet Booking",
+    "message": "dileep booked 1 seat(s) on GOLDEN using wallet balance (₹15).",
+    "type": "success",
+    "read": false,
+    "targetRole": "admin",
+    "targetUser": null,
+    "createdAt": "2026-06-06T05:07:15.466Z",
+    "__v": 0
+  },
+  {
+    "_id": "6a243eae8463022287d440d5",
+    "title": "Wallet Recharge",
+    "message": "Rakshitha R Poojary recharged their wallet with ₹500 (+₹150 bonus).",
+    "type": "info",
+    "read": false,
+    "targetRole": "admin",
+    "targetUser": null,
+    "createdAt": "2026-06-06T15:37:18.473Z",
+    "__v": 0
+  },
+  {
+    "_id": "6a243efa8463022287d440d7",
+    "title": "Spot Booking Successful",
+    "message": "Conductor booked ticket for Rakshitha R Poojary for ₹7.",
+    "type": "success",
+    "read": false,
+    "targetRole": "admin",
+    "targetUser": null,
+    "createdAt": "2026-06-06T15:38:34.997Z",
+    "__v": 0
+  },
+  {
+    "_id": "6a243f7a8463022287d440d9",
+    "title": "Spot Booking Successful",
+    "message": "Conductor booked ticket for Rakshitha R Poojary for ₹7.",
+    "type": "success",
+    "read": false,
+    "targetRole": "admin",
+    "targetUser": null,
+    "createdAt": "2026-06-06T15:40:42.987Z",
+    "__v": 0
+  },
+  {
+    "_id": "6a243fd08463022287d440db",
+    "title": "Spot Booking Successful",
+    "message": "Conductor booked ticket for Rakshitha R Poojary for ₹7.",
+    "type": "success",
+    "read": false,
+    "targetRole": "admin",
+    "targetUser": null,
+    "createdAt": "2026-06-06T15:42:08.052Z",
+    "__v": 0
+  },
+  {
+    "_id": "6a26c833caa0e0f82d782c3e",
+    "title": "Spot Booking Successful",
+    "message": "Conductor booked ticket for jeevan for ₹14.",
+    "type": "success",
+    "read": false,
+    "targetRole": "admin",
+    "targetUser": null,
+    "createdAt": "2026-06-08T13:48:35.579Z",
+    "__v": 0
+  },
+  {
+    "_id": "6a26c851caa0e0f82d782c40",
+    "title": "Spot Booking Successful",
+    "message": "Conductor booked ticket for jeevan for ₹14.",
+    "type": "success",
+    "read": false,
+    "targetRole": "admin",
+    "targetUser": null,
+    "createdAt": "2026-06-08T13:49:05.841Z",
+    "__v": 0
+  },
+  {
+    "_id": "6a26c889caa0e0f82d782c41",
+    "title": "Ticket Refunded",
+    "message": "Conductor refunded ₹14 to jeevan.",
+    "type": "info",
+    "read": false,
+    "targetRole": "admin",
+    "targetUser": null,
+    "createdAt": "2026-06-08T13:50:01.296Z",
+    "__v": 0
+  },
+  {
+    "_id": "6a26c8bfcaa0e0f82d782c43",
+    "title": "New Wallet Booking",
+    "message": "jeevan booked 1 seat(s) on GOLDEN using wallet balance (₹15).",
+    "type": "success",
+    "read": false,
+    "targetRole": "admin",
+    "targetUser": null,
+    "createdAt": "2026-06-08T13:50:55.448Z",
+    "__v": 0
+  }
+]

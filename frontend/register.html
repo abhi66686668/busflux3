@@ -1,0 +1,1831 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Create your BusFlux account "” seamless bus ticket booking for students and commuters.">
+  <title>Register - BusFlux</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#6C3FD6">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <link rel="apple-touch-icon" href="icons/icon-192x192.png">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --primary: #6C3FD6;
+      --primary-dark: #5530b8;
+      --primary-light: #8B5CF6;
+      --primary-gradient: linear-gradient(135deg, #6C3FD6 0%, #8B5CF6 100%);
+      --bg-page: #EEEAF8;
+      --bg-card: #FFFFFF;
+      --text-dark: #1A1A2E;
+      --text-medium: #4A4A6A;
+      --text-muted: #9B9BB4;
+      --border: #E0DBF5;
+      --border-focus: #6C3FD6;
+      --input-bg: #F7F5FD;
+      --success: #10B981;
+      --error: #EF4444;
+      --warning: #F59E0B;
+      --shadow-card: 0 20px 60px rgba(108, 63, 214, 0.15);
+      --shadow-btn: 0 8px 25px rgba(108, 63, 214, 0.45);
+      --radius-card: 24px;
+      --radius-input: 12px;
+      --radius-btn: 14px;
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    html, body {
+      min-height: 100%;
+      font-family: 'Inter', sans-serif;
+      background: linear-gradient(135deg, #EDE9FE 0%, #F3F0FF 50%, #E8E4FA 100%);
+      color: var(--text-dark);
+    }
+
+    /* ── Page Layout ── */
+    .page-wrapper {
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: flex-start;
+      padding: 24px 16px 40px;
+    }
+
+    /* ── Top Nav Bar ── */
+    .top-nav {
+      width: 100%;
+      max-width: 520px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 24px;
+    }
+
+    .back-link {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      text-decoration: none;
+      color: var(--text-medium);
+      font-size: 0.88rem;
+      font-weight: 600;
+      transition: color 0.3s;
+    }
+
+    .back-link:hover { color: var(--primary); }
+
+    .brand-logo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+    }
+
+    .brand-logo .logo-icon {
+      width: 32px;
+      height: 32px;
+      background: var(--primary-gradient);
+      border-radius: 9px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 14px;
+      box-shadow: 0 4px 12px rgba(108, 63, 214, 0.35);
+    }
+
+    .brand-logo .logo-text {
+      font-size: 1.15rem;
+      font-weight: 800;
+      color: var(--text-dark);
+    }
+
+    .brand-logo .logo-text span { color: var(--primary); }
+
+    /* ── Auth Card ── */
+    .auth-card {
+      background: var(--bg-card);
+      border-radius: var(--radius-card);
+      box-shadow: var(--shadow-card);
+      width: 100%;
+      max-width: 520px;
+      overflow: hidden;
+      animation: cardIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    @keyframes cardIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── Hero Section ── */
+    .auth-hero {
+      background: linear-gradient(160deg, #F0ECFF 0%, #E8E2FF 100%);
+      padding: 28px 28px 20px;
+      position: relative;
+      overflow: hidden;
+      min-height: 150px;
+    }
+
+    .hero-content h1 {
+      font-size: 1.9rem;
+      font-weight: 800;
+      color: var(--primary);
+      line-height: 1.15;
+      margin-bottom: 8px;
+    }
+
+    .hero-content p {
+      font-size: 0.88rem;
+      color: var(--text-medium);
+      line-height: 1.5;
+      max-width: 210px;
+    }
+
+    .hero-img-wrap {
+      position: absolute;
+      right: 12px;
+      top: 8px;
+      width: 48%;
+      display: flex;
+      align-items: flex-start;
+      justify-content: flex-end;
+    }
+
+    .hero-img-wrap img {
+      width: 100%;
+      max-width: 220px;
+      object-fit: contain;
+      filter: drop-shadow(0 8px 20px rgba(108, 63, 214, 0.25));
+      animation: floatPhone 4s ease-in-out infinite;
+    }
+
+    @keyframes floatPhone {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-6px); }
+    }
+
+    /* ── Progress Steps ── */
+    .steps-bar {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 20px 28px;
+      border-bottom: 1px solid var(--border);
+      gap: 0;
+    }
+
+    .step-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 5px;
+      position: relative;
+      z-index: 1;
+    }
+
+    .step-circle {
+      width: 36px;
+      height: 36px;
+      border-radius: 50%;
+      border: 2px solid var(--border);
+      background: var(--bg-card);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.85rem;
+      font-weight: 700;
+      color: var(--text-muted);
+      transition: var(--transition);
+    }
+
+    .step-label {
+      font-size: 0.7rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      white-space: nowrap;
+      transition: color 0.4s;
+    }
+
+    .step-connector {
+      width: 70px;
+      height: 2px;
+      background: var(--border);
+      margin-bottom: 22px;
+      flex-shrink: 0;
+      transition: background 0.4s;
+    }
+
+    .step-item.active .step-circle {
+      background: var(--primary-gradient);
+      border-color: transparent;
+      color: #fff;
+      box-shadow: 0 0 0 4px rgba(108, 63, 214, 0.15);
+    }
+
+    .step-item.active .step-label { color: var(--primary); font-weight: 700; }
+
+    .step-item.done .step-circle {
+      background: rgba(16,185,129,0.12);
+      border-color: var(--success);
+      color: var(--success);
+    }
+
+    .step-item.done .step-label { color: var(--success); }
+    .step-connector.done { background: var(--success); }
+
+    /* ── Form Body ── */
+    .auth-body {
+      padding: 28px 28px 24px;
+    }
+
+    /* ── Section header ── */
+    .section-header {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      margin-bottom: 22px;
+    }
+
+    .section-icon {
+      width: 40px;
+      height: 40px;
+      border-radius: 12px;
+      background: rgba(108, 63, 214, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--primary);
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+
+    .section-header h2 {
+      font-size: 1rem;
+      font-weight: 700;
+      color: var(--text-dark);
+    }
+
+    .section-header p {
+      font-size: 0.78rem;
+      color: var(--text-muted);
+      margin-top: 2px;
+    }
+
+    /* ── Form Grid ── */
+    .form-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0 16px;
+    }
+
+    .form-grid .full { grid-column: 1 / -1; }
+
+    @media (max-width: 520px) {
+      .form-grid { grid-template-columns: 1fr; }
+      .form-grid .full { grid-column: 1; }
+    }
+
+    /* ── Form Groups ── */
+    .form-group { margin-bottom: 16px; }
+
+    .form-label {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--text-medium);
+      margin-bottom: 7px;
+    }
+
+    .form-label a {
+      font-size: 0.75rem;
+      color: var(--primary);
+      text-decoration: underline;
+      cursor: pointer;
+    }
+
+    .input-wrap {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .input-icon {
+      position: absolute;
+      left: 14px;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      pointer-events: none;
+      z-index: 2;
+      transition: color 0.3s;
+    }
+
+    .input-wrap:focus-within .input-icon { color: var(--primary); }
+
+    .input-wrap input,
+    .input-wrap select {
+      width: 100%;
+      padding: 12px 42px 12px 40px;
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-input);
+      background: var(--input-bg);
+      font-size: 0.88rem;
+      font-family: 'Inter', sans-serif;
+      color: var(--text-dark);
+      outline: none;
+      transition: var(--transition);
+      appearance: none;
+      -webkit-appearance: none;
+    }
+
+    .input-wrap input::placeholder { color: var(--text-muted); }
+
+    .input-wrap input:focus,
+    .input-wrap select:focus {
+      border-color: var(--border-focus);
+      background: #FFFFFF;
+      box-shadow: 0 0 0 3px rgba(108, 63, 214, 0.12);
+    }
+
+    .input-wrap input.verified {
+      border-color: rgba(16,185,129,0.5);
+      background: rgba(16,185,129,0.04);
+    }
+
+    .input-action-btn {
+      position: absolute;
+      right: 12px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--text-muted);
+      font-size: 0.88rem;
+      padding: 4px;
+      transition: color 0.3s;
+      z-index: 2;
+    }
+
+    .input-action-btn:hover { color: var(--primary); }
+
+    .field-error {
+      color: var(--error);
+      font-size: 0.75rem;
+      margin-top: 5px;
+      display: none;
+    }
+
+    /* ── Phone prefix ── */
+    .phone-prefix-wrap {
+      position: absolute;
+      left: 0;
+      display: flex;
+      align-items: center;
+      height: 100%;
+      padding: 0 10px 0 12px;
+      border-right: 1.5px solid var(--border);
+      gap: 5px;
+      z-index: 3;
+      cursor: default;
+      border-radius: var(--radius-input) 0 0 var(--radius-input);
+    }
+
+    .phone-prefix-wrap .flag { font-size: 1.1rem; }
+    .phone-prefix-wrap .code { font-size: 0.85rem; font-weight: 600; color: var(--text-dark); }
+    .phone-prefix-wrap .chevron { color: var(--text-muted); font-size: 0.6rem; }
+
+    .phone-input { padding-left: 95px !important; }
+
+    /* ── Password strength ── */
+    .pwd-strength-box {
+      background: rgba(108, 63, 214, 0.06);
+      border: 1.5px solid rgba(108, 63, 214, 0.15);
+      border-radius: 12px;
+      padding: 12px 14px;
+      margin-top: 14px;
+    }
+
+    .pwd-strength-title {
+      font-size: 0.78rem;
+      font-weight: 600;
+      color: var(--text-medium);
+      margin-bottom: 8px;
+    }
+
+    .pwd-rules {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px 16px;
+    }
+
+    .pwd-rule {
+      display: flex;
+      align-items: center;
+      gap: 5px;
+      font-size: 0.76rem;
+      color: var(--text-muted);
+      font-weight: 500;
+      transition: color 0.3s;
+    }
+
+    .pwd-rule.ok { color: var(--success); }
+    .pwd-rule i { font-size: 0.7rem; }
+
+    /* ── Terms Checkbox ── */
+    .terms-row {
+      display: flex;
+      align-items: flex-start;
+      gap: 10px;
+      margin: 18px 0;
+      font-size: 0.83rem;
+      color: var(--text-medium);
+      line-height: 1.5;
+    }
+
+    .terms-row input[type="checkbox"] {
+      width: 16px;
+      height: 16px;
+      accent-color: var(--primary);
+      flex-shrink: 0;
+      margin-top: 2px;
+      cursor: pointer;
+    }
+
+    .terms-row a {
+      color: var(--primary);
+      font-weight: 600;
+      text-decoration: none;
+    }
+
+    /* ── Primary Button ── */
+    .btn-primary {
+      width: 100%;
+      padding: 14px 24px;
+      background: var(--primary-gradient);
+      color: white;
+      border: none;
+      border-radius: var(--radius-btn);
+      font-size: 1rem;
+      font-weight: 700;
+      font-family: 'Inter', sans-serif;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      box-shadow: var(--shadow-btn);
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-primary::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255,255,255,0.15) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 35px rgba(108, 63, 214, 0.55);
+    }
+
+    .btn-primary:active { transform: translateY(0); }
+
+    .btn-primary .btn-arrow {
+      width: 28px;
+      height: 28px;
+      background: rgba(255,255,255,0.2);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      flex-shrink: 0;
+      transition: transform 0.3s;
+    }
+
+    .btn-primary:hover .btn-arrow { transform: translateX(3px); }
+
+    /* ── Secondary Button ── */
+    .btn-secondary {
+      flex: 1;
+      padding: 13px 18px;
+      background: var(--input-bg);
+      color: var(--text-medium);
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-btn);
+      font-size: 0.9rem;
+      font-weight: 600;
+      font-family: 'Inter', sans-serif;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      transition: var(--transition);
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--primary);
+      color: var(--primary);
+      background: rgba(108,63,214,0.05);
+    }
+
+    /* ── Step Actions ── */
+    .step-actions {
+      display: flex;
+      gap: 12px;
+      margin-top: 22px;
+      padding-top: 18px;
+      border-top: 1px solid var(--border);
+    }
+
+    .step-actions .btn-primary { flex: 2; }
+
+    /* ── Step Sections ── */
+    .step-section { display: none; }
+    .step-section.active {
+      display: block;
+      animation: slideStep 0.4s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    @keyframes slideStep {
+      from { opacity: 0; transform: translateY(12px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── OTP ── */
+    .otp-box {
+      background: rgba(108, 63, 214, 0.05);
+      border: 1.5px solid rgba(108, 63, 214, 0.18);
+      border-radius: 12px;
+      padding: 16px 18px;
+      margin-top: 14px;
+      display: none;
+      animation: fadeIn 0.3s ease;
+    }
+
+    .otp-box.visible { display: block; }
+
+    @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
+
+    .otp-row {
+      display: flex;
+      gap: 10px;
+      align-items: flex-end;
+    }
+
+    .otp-row .form-group { flex: 1; margin-bottom: 0; }
+
+    .otp-btn {
+      flex-shrink: 0;
+      padding: 12px 14px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      font-family: 'Inter', sans-serif;
+      cursor: pointer;
+      border-radius: 10px;
+      white-space: nowrap;
+      transition: var(--transition);
+    }
+
+    .otp-send-btn {
+      background: rgba(108, 63, 214, 0.1);
+      border: 1.5px solid rgba(108, 63, 214, 0.25);
+      color: var(--primary);
+    }
+
+    .otp-send-btn:hover { background: rgba(108, 63, 214, 0.18); }
+
+    .otp-verify-btn {
+      background: rgba(16, 185, 129, 0.1);
+      border: 1.5px solid rgba(16, 185, 129, 0.3);
+      color: var(--success);
+    }
+
+    .otp-verify-btn:hover { background: rgba(16, 185, 129, 0.2); }
+
+    .otp-verified-badge {
+      display: none;
+      align-items: center;
+      gap: 6px;
+      color: var(--success);
+      font-size: 0.82rem;
+      font-weight: 600;
+      margin-top: 8px;
+    }
+
+    .otp-verified-badge.visible { display: flex; }
+
+    .email-row {
+      display: flex;
+      gap: 10px;
+      align-items: flex-end;
+    }
+
+    .email-row .form-group { flex: 1; margin-bottom: 0; }
+
+    /* ── Upload Area ── */
+    .upload-area {
+      border: 2px dashed var(--border);
+      border-radius: 12px;
+      padding: 18px;
+      text-align: center;
+      cursor: pointer;
+      transition: var(--transition);
+      position: relative;
+      overflow: hidden;
+      background: var(--input-bg);
+    }
+
+    .upload-area:hover {
+      border-color: var(--primary);
+      background: rgba(108, 63, 214, 0.04);
+    }
+
+    .upload-area input[type="file"] {
+      position: absolute;
+      inset: 0;
+      opacity: 0;
+      cursor: pointer;
+      width: 100%;
+      height: 100%;
+    }
+
+    .upload-area i { font-size: 1.5rem; color: var(--text-muted); margin-bottom: 5px; }
+    .upload-area p { font-size: 0.8rem; color: var(--text-muted); }
+
+    .upload-name {
+      font-size: 0.78rem;
+      color: var(--primary);
+      font-weight: 600;
+      margin-top: 5px;
+      word-break: break-all;
+    }
+
+    .upload-preview {
+      width: 70px;
+      height: 70px;
+      border-radius: 10px;
+      object-fit: cover;
+      margin: 8px auto 0;
+      display: none;
+      border: 2px solid rgba(108, 63, 214, 0.3);
+    }
+
+    /* ── Social ── */
+    .or-divider {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 18px 0;
+      color: var(--text-muted);
+      font-size: 0.8rem;
+      font-weight: 500;
+    }
+
+    .or-divider::before, .or-divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    .social-row {
+      display: flex;
+      gap: 12px;
+    }
+
+    .social-btn {
+      flex: 1;
+      padding: 11px 10px;
+      border: 1.5px solid var(--border);
+      border-radius: 12px;
+      background: var(--bg-card);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: var(--text-medium);
+      font-family: 'Inter', sans-serif;
+      transition: var(--transition);
+    }
+
+    .social-btn:hover {
+      border-color: var(--primary);
+      background: rgba(108, 63, 214, 0.04);
+    }
+
+    .social-btn .fab { font-size: 16px; }
+    .social-btn .fa-google { color: #EA4335; }
+    .social-btn .fa-apple { color: #000; font-size: 18px; }
+    .social-btn .fa-facebook { color: #1877F2; }
+
+    /* ── Student Section ── */
+    .student-section {
+      margin-top: 20px;
+      padding-top: 18px;
+      border-top: 1px solid var(--border);
+      display: none;
+    }
+
+    .student-section h3 {
+      font-size: 0.95rem;
+      font-weight: 700;
+      color: var(--text-dark);
+      margin-bottom: 14px;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+
+    .student-section h3 i { color: var(--primary); }
+
+    /* ── Auth Footer ── */
+    .auth-footer {
+      text-align: center;
+      padding: 16px 28px 20px;
+      border-top: 1px solid var(--border);
+      font-size: 0.88rem;
+      color: var(--text-muted);
+    }
+
+    .auth-footer a {
+      color: var(--primary);
+      font-weight: 700;
+      text-decoration: none;
+    }
+
+    /* ── Loader ── */
+    .loader-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(255,255,255,0.88);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 16px;
+      z-index: 9999;
+      backdrop-filter: blur(6px);
+    }
+
+    .loader-overlay.visible { display: flex; }
+
+    .spinner {
+      width: 48px;
+      height: 48px;
+      border: 4px solid rgba(108,63,214,0.15);
+      border-top-color: var(--primary);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+
+    @keyframes spin { to { transform: rotate(360deg); } }
+    .loader-overlay p { font-size: 1rem; font-weight: 600; color: var(--primary); }
+
+    /* ── Toast ── */
+    #toastContainer {
+      position: fixed;
+      top: 20px;
+      right: 20px;
+      z-index: 99999;
+      display: flex;
+      flex-direction: column;
+      gap: 10px;
+    }
+
+    .toast {
+      background: white;
+      border-radius: 12px;
+      padding: 13px 16px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--text-dark);
+      animation: toastIn 0.4s ease;
+      max-width: 320px;
+      border-left: 4px solid var(--primary);
+    }
+
+    .toast.error { border-left-color: var(--error); }
+    .toast.success { border-left-color: var(--success); }
+    .toast.warning { border-left-color: var(--warning); }
+
+    @keyframes toastIn { from { opacity: 0; transform: translateX(20px); } to { opacity: 1; transform: translateX(0); } }
+
+    /* ── Modal ── */
+    .modal-overlay {
+      display: none;
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.55);
+      z-index: 9999;
+      justify-content: center;
+      align-items: center;
+      opacity: 0;
+      transition: opacity 0.3s ease;
+    }
+
+    .modal-box {
+      background: white;
+      border-radius: 20px;
+      padding: 24px;
+      max-width: 380px;
+      width: 92%;
+      position: relative;
+      text-align: center;
+      box-shadow: 0 20px 60px rgba(0,0,0,0.2);
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 12px;
+      right: 16px;
+      background: none;
+      border: none;
+      font-size: 1.4rem;
+      cursor: pointer;
+      color: var(--text-muted);
+      transition: color 0.3s;
+    }
+
+    .modal-close:hover { color: var(--text-dark); }
+    .modal-box h3 { font-size: 1rem; font-weight: 700; margin-bottom: 14px; }
+    .modal-box img { max-width: 100%; border-radius: 10px; margin-bottom: 12px; }
+    .modal-box p { font-size: 0.82rem; color: var(--text-medium); line-height: 1.5; }
+
+    /* Responsive */
+    @media (max-width: 480px) {
+      .auth-hero { min-height: 130px; padding: 22px 20px 16px; }
+      .auth-body { padding: 22px 18px 18px; }
+      .hero-content h1 { font-size: 1.5rem; }
+      .hero-img-wrap { width: 44%; }
+      .step-connector { width: 40px; }
+      .auth-footer { padding: 14px 18px 18px; }
+    }
+  </style>
+</head>
+<body>
+
+  <div class="page-wrapper">
+
+    <!-- Top Nav -->
+    <div class="top-nav">
+      <a href="index.html" class="back-link">
+        <i class="fas fa-arrow-left"></i> Back to Home
+      </a>
+      <a href="index.html" class="brand-logo">
+        <div class="logo-icon"><i class="fas fa-bus-alt"></i></div>
+        <span class="logo-text">Bus<span>Flux</span></span>
+      </a>
+    </div>
+
+    <!-- Auth Card -->
+    <div class="auth-card">
+
+      <!-- Hero -->
+      <div class="auth-hero">
+        <div class="hero-content">
+          <h1>Create Your<br>Account</h1>
+          <p>Sign up now and start your seamless travel experience.</p>
+        </div>
+        <div class="hero-img-wrap">
+          <img src="busflux_ticket_phone.png" alt="BusFlux ticket app" onerror="this.style.display='none'">
+        </div>
+      </div>
+
+      <!-- Progress Steps -->
+      <div class="steps-bar">
+        <div class="step-item active" id="step1Indicator">
+          <div class="step-circle">1</div>
+          <span class="step-label">Account</span>
+        </div>
+        <div class="step-connector" id="conn1"></div>
+        <div class="step-item" id="step2Indicator">
+          <div class="step-circle">2</div>
+          <span class="step-label">Verify</span>
+        </div>
+        <div class="step-connector" id="conn2"></div>
+        <div class="step-item" id="step3Indicator">
+          <div class="step-circle">3</div>
+          <span class="step-label">Complete</span>
+        </div>
+      </div>
+
+      <!-- Form Body -->
+      <div class="auth-body">
+        <form id="registerForm" novalidate>
+
+          <!-- ── STEP 1: Account Details ── -->
+          <div class="step-section active" id="step1Section">
+            <div class="section-header">
+              <div class="section-icon"><i class="fas fa-user"></i></div>
+              <div>
+                <h2>Personal Information</h2>
+                <p>Your basic identity and contact details</p>
+              </div>
+            </div>
+
+            <div class="form-grid">
+
+              <!-- Full Name -->
+              <div class="form-group">
+                <label class="form-label" for="name">Full Name</label>
+                <div class="input-wrap">
+                  <i class="fas fa-user input-icon"></i>
+                  <input type="text" id="name" placeholder="Enter your full name" required autocomplete="name"
+                    onblur="validateRealtime('name')" oninput="validateRealtime('name', true)">
+                </div>
+                <div class="field-error" id="nameError"></div>
+              </div>
+
+              <!-- Email -->
+              <div class="form-group">
+                <label class="form-label" for="email">Email Address</label>
+                <div class="input-wrap">
+                  <i class="fas fa-envelope input-icon"></i>
+                  <input type="email" id="email" placeholder="Enter your email" required autocomplete="email"
+                    onblur="validateRealtime('email')" oninput="validateRealtime('email', true)">
+                </div>
+                <div class="field-error" id="emailError"></div>
+              </div>
+
+              <!-- Phone -->
+              <div class="form-group full">
+                <label class="form-label" for="phone">Phone Number</label>
+                <div class="input-wrap">
+                  <span class="phone-prefix-wrap">
+                    <span class="flag">🇮🇳</span>
+                    <span class="code">+91</span>
+                    <i class="fas fa-chevron-down chevron"></i>
+                  </span>
+                  <input type="tel" id="phone" class="phone-input" placeholder="Enter your phone number"
+                    maxlength="10" minlength="10" required autocomplete="tel"
+                    oninput="this.value = this.value.replace(/[^0-9]/g,'').slice(0,10); validateRealtime('phone', true);"
+                    onblur="validateRealtime('phone')">
+                </div>
+                <div class="field-error" id="phoneError"></div>
+              </div>
+
+              <!-- Password -->
+              <div class="form-group">
+                <label class="form-label" for="password">Password</label>
+                <div class="input-wrap">
+                  <i class="fas fa-lock input-icon"></i>
+                  <input type="password" id="password" placeholder="Create a password" required minlength="8"
+                    oninput="checkPasswordStrength(this.value)" autocomplete="new-password">
+                  <button type="button" class="input-action-btn" onclick="togglePwd('password', this)" aria-label="Toggle password">
+                    <i class="fas fa-eye"></i>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Confirm Password -->
+              <div class="form-group">
+                <label class="form-label" for="confirmPassword">Confirm Password</label>
+                <div class="input-wrap">
+                  <i class="fas fa-shield-alt input-icon"></i>
+                  <input type="password" id="confirmPassword" placeholder="Confirm your password" required
+                    autocomplete="new-password">
+                  <button type="button" class="input-action-btn" onclick="togglePwd('confirmPassword', this)" aria-label="Toggle confirm password">
+                    <i class="fas fa-eye"></i>
+                  </button>
+                </div>
+              </div>
+
+              <!-- Gender -->
+              <div class="form-group full">
+                <label class="form-label" for="gender">Gender</label>
+                <div class="input-wrap">
+                  <i class="fas fa-venus-mars input-icon"></i>
+                  <select id="gender" onchange="validateRealtime('gender')" required>
+                    <option value="" disabled selected>Select Gender</option>
+                    <option value="Male">Male</option>
+                    <option value="Female">Female</option>
+                    <option value="Other">Other</option>
+                  </select>
+                </div>
+                <div class="field-error" id="genderError"></div>
+              </div>
+
+              <!-- Hidden Fields -->
+              <input type="hidden" id="age" value="">
+              <input type="hidden" id="aadhaarNumber" value="">
+
+            </div>
+
+            <!-- Password Strength Box -->
+            <div class="pwd-strength-box" id="pwdStrengthBox">
+              <div class="pwd-strength-title">Password must contain:</div>
+              <div class="pwd-rules">
+                <span class="pwd-rule" id="rule-length"><i class="fas fa-circle-check"></i> 8+ characters</span>
+                <span class="pwd-rule" id="rule-number"><i class="fas fa-circle-check"></i> 1 number</span>
+                <span class="pwd-rule" id="rule-special"><i class="fas fa-circle-check"></i> 1 special character</span>
+              </div>
+            </div>
+
+            <!-- Terms -->
+            <div class="terms-row">
+              <input type="checkbox" id="agreeTerms" required>
+              <label for="agreeTerms">
+                I agree to the <a href="#" onclick="return false;">Terms &amp; Conditions</a> and <a href="#" onclick="return false;">Privacy Policy</a>
+              </label>
+            </div>
+
+            <!-- Submit / Continue -->
+            <button type="button" class="btn-primary" onclick="goToStep(2)">
+              Create Account
+              <span class="btn-arrow"><i class="fas fa-arrow-right"></i></span>
+            </button>
+
+          </div>
+
+          <!-- ── STEP 2: Document Uploads ── -->
+          <div class="step-section" id="step2Section">
+            <div class="section-header">
+              <div class="section-icon"><i class="fas fa-camera"></i></div>
+              <div>
+                <h2>Identity Documents</h2>
+                <p>Upload your profile photo and Aadhaar card</p>
+              </div>
+            </div>
+
+            <div class="form-grid">
+
+              <!-- Profile Photo -->
+              <div class="form-group">
+                <label class="form-label">
+                  <span>Profile Photo</span>
+                  <a onclick="openProfileSampleModal(); return false;">View Sample</a>
+                </label>
+                <div class="upload-area" id="profileUploadArea">
+                  <input type="file" id="userPhoto" accept="image/*" required
+                    onchange="previewFile(this,'profilePreview','profileUploadName')">
+                  <i class="fas fa-user-circle"></i>
+                  <p>Click to upload</p>
+                  <p style="font-size:0.72rem;opacity:0.6;margin-top:3px;">JPG, PNG, WEBP</p>
+                  <div class="upload-name" id="profileUploadName"></div>
+                  <img class="upload-preview" id="profilePreview" alt="Profile preview">
+                </div>
+              </div>
+
+              <!-- Aadhaar Card -->
+              <div class="form-group">
+                <label class="form-label">
+                  <span>Aadhaar Card <span id="aadhaarStatus" style="font-size:0.72rem;color:var(--primary);"></span></span>
+                  <a onclick="openSampleModal(); return false;">View Sample</a>
+                </label>
+                <div class="upload-area" id="idCardUploadArea">
+                  <input type="file" id="idCardPhoto" accept="image/*" required
+                    onchange="previewFile(this,'idPreview','idUploadName'); processAadhaar(this);">
+                  <i class="fas fa-id-card" id="aadhaarScanIcon"></i>
+                  <p id="aadhaarScanText">Click to upload Aadhaar</p>
+                  <p style="font-size:0.72rem;opacity:0.6;margin-top:3px;">JPG, PNG, WEBP</p>
+                  <div class="upload-name" id="idUploadName"></div>
+                  <img class="upload-preview" id="idPreview" alt="Aadhaar preview">
+                </div>
+              </div>
+
+            </div>
+
+            <!-- Occupation Section (conditional) -->
+            <div class="student-section" id="studentSection">
+              <h3><i class="fas fa-briefcase"></i> Occupation Details</h3>
+
+              <div class="form-group">
+                <label class="form-label" for="institutionType">Occupation Status</label>
+                <div class="input-wrap">
+                  <i class="fas fa-user-tie input-icon"></i>
+                  <select id="institutionType" onchange="handleInstitutionTypeChange()">
+                    <option value="" disabled selected>Select your current status</option>
+                    <option value="School">School</option>
+                    <option value="College">College</option>
+                    <option value="Job">Job</option>
+                    <option value="No Job">No Job</option>
+                  </select>
+                </div>
+              </div>
+
+              <input type="hidden" id="institutionName" value="">
+
+              <div class="form-group" id="schoolNameGroup" style="display:none;">
+                <label class="form-label" for="schoolName">School Name</label>
+                <div class="input-wrap">
+                  <i class="fas fa-building input-icon"></i>
+                  <input type="text" id="schoolName" list="schoolList" placeholder="Search or select school"
+                    oninput="document.getElementById('institutionName').value = this.value">
+                  <datalist id="schoolList"></datalist>
+                </div>
+              </div>
+
+              <div class="form-group" id="collegeNameGroup" style="display:none;">
+                <label class="form-label" for="collegeName">College Name</label>
+                <div class="input-wrap">
+                  <i class="fas fa-building input-icon"></i>
+                  <input type="text" id="collegeName" list="collegeList" placeholder="Search or select college"
+                    oninput="handleCollegeChange()">
+                  <datalist id="collegeList"></datalist>
+                </div>
+              </div>
+
+              <div class="form-group" id="companyNameGroup" style="display:none;">
+                <label class="form-label" for="companyName">Company Name</label>
+                <div class="input-wrap">
+                  <i class="fas fa-building input-icon"></i>
+                  <input type="text" id="companyName" placeholder="Enter company name"
+                    oninput="document.getElementById('institutionName').value = this.value">
+                </div>
+              </div>
+
+              <div class="form-group" id="courseGroup" style="display:none;">
+                <label class="form-label" for="course">Course</label>
+                <div class="input-wrap">
+                  <i class="fas fa-book input-icon"></i>
+                  <input type="text" id="course" list="courseList" placeholder="Search or select course">
+                  <datalist id="courseList"></datalist>
+                </div>
+              </div>
+
+              <div class="form-group" id="studentIdGroup" style="display:none;">
+                <label class="form-label" for="studentIdNumber">ID Number</label>
+                <div class="input-wrap">
+                  <i class="fas fa-id-card input-icon"></i>
+                  <input type="text" id="studentIdNumber" placeholder="Enter ID Number">
+                </div>
+              </div>
+
+              <div class="form-group" id="passingYearGroup" style="display:none;">
+                <label class="form-label" for="passingYear">Year (Passing/Joining)</label>
+                <div class="input-wrap">
+                  <i class="fas fa-calendar-alt input-icon"></i>
+                  <input type="number" id="passingYear" placeholder="e.g. 2028" min="1950" max="2100">
+                </div>
+              </div>
+
+              <div class="form-group" id="studentIdPhotoGroup" style="display:none;">
+                <label class="form-label">ID Card Photo</label>
+                <div class="upload-area" id="studentIdUploadArea">
+                  <input type="file" id="studentIdPhoto" accept="image/*"
+                    onchange="previewFile(this,'studentIdPreview','studentIdUploadName')">
+                  <i class="fas fa-id-badge"></i>
+                  <p>Click to upload ID Card</p>
+                  <p style="font-size:0.72rem;opacity:0.6;margin-top:3px;">JPG, PNG, WEBP</p>
+                  <div class="upload-name" id="studentIdUploadName"></div>
+                  <img class="upload-preview" id="studentIdPreview" alt="ID preview">
+                </div>
+              </div>
+            </div>
+
+            <div class="step-actions">
+              <button type="button" class="btn-secondary" onclick="goToStep(1)">
+                <i class="fas fa-arrow-left"></i> Back
+              </button>
+              <button type="submit" class="btn-primary" id="uploadNextBtn">
+                <i class="fas fa-user-plus"></i> Create My Account
+                <span class="btn-arrow"><i class="fas fa-check"></i></span>
+              </button>
+            </div>
+          </div>
+
+        </form>
+
+        <!-- Social Signup -->
+        <div class="or-divider">or sign up with</div>
+        <div class="social-row">
+          <button class="social-btn" type="button" onclick="socialSignup('google')">
+            <i class="fab fa-google"></i>
+          </button>
+          <button class="social-btn" type="button" onclick="socialSignup('apple')">
+            <i class="fab fa-apple"></i>
+          </button>
+          <button class="social-btn" type="button" onclick="socialSignup('facebook')">
+            <i class="fab fa-facebook"></i>
+          </button>
+        </div>
+
+      </div>
+
+      <!-- Footer -->
+      <div class="auth-footer">
+        Already have an account? <a href="login.html">Login</a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Loader -->
+  <div class="loader-overlay" id="registerLoaderOverlay">
+    <div class="spinner"></div>
+    <p>Creating your account...</p>
+  </div>
+
+  <!-- Toast -->
+  <div id="toastContainer"></div>
+
+  <!-- Sample Aadhaar Modal -->
+  <div class="modal-overlay" id="sampleModal">
+    <div class="modal-box">
+      <button class="modal-close" onclick="closeSampleModal()">&times;</button>
+      <h3>Sample Aadhaar Card</h3>
+      <img src="sample_aadhaar.png" alt="Sample Aadhaar">
+      <p>Please upload a clear image of your Aadhaar card where the Date of Birth and 12-digit number are visible.</p>
+      <button onclick="closeSampleModal()" class="btn-primary" style="margin-top:14px;">Got it</button>
+    </div>
+  </div>
+
+  <!-- Sample Profile Modal -->
+  <div class="modal-overlay" id="sampleProfileModal">
+    <div class="modal-box">
+      <button class="modal-close" onclick="closeProfileSampleModal()">&times;</button>
+      <h3>Sample Profile Photo</h3>
+      <img id="profileSampleImg" src="sample_profile_male.png" alt="Sample Profile">
+      <p>Please upload a clear, passport-style photo with your face fully visible and well-lit.</p>
+      <button onclick="closeProfileSampleModal()" class="btn-primary" style="margin-top:14px;">Got it</button>
+    </div>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/tesseract.js@5/dist/tesseract.min.js"></script>
+  <script src="script.js?v=10"></script>
+  <script>
+    // ── Toast ──
+    function showToast(msg, type = 'info') {
+      const t = document.createElement('div');
+      t.className = 'toast ' + type;
+      const icons = { error: 'fa-circle-xmark', success: 'fa-circle-check', info: 'fa-circle-info', warning: 'fa-triangle-exclamation' };
+      const colors = { error: '#EF4444', success: '#10B981', info: '#6C3FD6', warning: '#F59E0B' };
+      t.innerHTML = `<i class="fas ${icons[type] || 'fa-circle-info'}" style="color:${colors[type]||'#6C3FD6'};font-size:1rem;flex-shrink:0;"></i> <span>${msg}</span>`;
+      document.getElementById('toastContainer').appendChild(t);
+      setTimeout(() => t.remove(), 4500);
+    }
+
+    // ── Social ──
+    function socialSignup(provider) {
+      showToast(`${provider.charAt(0).toUpperCase() + provider.slice(1)} signup coming soon!`, 'info');
+    }
+
+    // ── Toggle Password ──
+    function togglePwd(inputId, btn) {
+      const inp = document.getElementById(inputId);
+      const icon = btn.querySelector('i');
+      if (inp.type === 'password') {
+        inp.type = 'text';
+        icon.classList.replace('fa-eye', 'fa-eye-slash');
+      } else {
+        inp.type = 'password';
+        icon.classList.replace('fa-eye-slash', 'fa-eye');
+      }
+    }
+
+    // ── Password Strength ──
+    function checkPasswordStrength(val) {
+      const rules = {
+        'rule-length': val.length >= 8,
+        'rule-number': /\d/.test(val),
+        'rule-special': /[!@#$%^&*(),.?":{}|<>_\-+=\[\]\\\/]/.test(val)
+      };
+      Object.entries(rules).forEach(([id, ok]) => {
+        const el = document.getElementById(id);
+        if (ok) el.classList.add('ok'); else el.classList.remove('ok');
+      });
+    }
+
+    // ── Validation ──
+    async function validateRealtime(fieldId, isInputEvent = false) {
+      const field = document.getElementById(fieldId);
+      const errorDiv = document.getElementById(fieldId + 'Error');
+      if (!field || !errorDiv) return;
+      const val = field.value.trim();
+
+      if (isInputEvent) {
+        if (fieldId === 'phone' && val.length === 10) {
+          checkBackend(fieldId, { phone: val }, 'Phone number is already in use');
+        } else {
+          errorDiv.style.display = 'none';
+        }
+        return;
+      }
+
+      if (!val) {
+        errorDiv.textContent = 'This field is required.';
+        errorDiv.style.display = 'block';
+        return;
+      }
+
+      if (fieldId === 'phone' && val.length !== 10) {
+        errorDiv.textContent = 'Phone number must be exactly 10 digits.';
+        errorDiv.style.display = 'block';
+        return;
+      }
+
+      if (fieldId === 'email') {
+        const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        if (!emailRegex.test(val)) {
+          errorDiv.textContent = 'Please enter a valid email address.';
+          errorDiv.style.display = 'block';
+          return;
+        }
+        checkBackend(fieldId, { email: val }, 'Email is already registered');
+      }
+
+      if (fieldId === 'phone' && val.length === 10) {
+        checkBackend(fieldId, { phone: val }, 'Phone number is already in use');
+      }
+    }
+
+    async function checkBackend(fieldId, payload, defaultError) {
+      const errorDiv = document.getElementById(fieldId + 'Error');
+      try {
+        const res = await fetch(((window.location.protocol === "file:" ? "http://localhost:5000/api" : "/api") + "/auth/check-user"), {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify(payload)
+        });
+        const data = await res.json();
+        if (!res.ok) {
+          errorDiv.textContent = data.error || defaultError;
+          errorDiv.style.display = 'block';
+        } else {
+          errorDiv.style.display = 'none';
+        }
+      } catch (err) {
+        console.error('Validation check error:', err);
+      }
+    }
+
+    // ── Step Navigation ──
+    let currentStep = 1;
+
+    async function goToStep(step) {
+      if (step > currentStep) {
+        if (currentStep === 1) {
+          const name = document.getElementById('name').value.trim();
+          const email = document.getElementById('email').value.trim();
+          const phone = document.getElementById('phone').value.trim();
+          const gender = document.getElementById('gender').value;
+          const password = document.getElementById('password').value;
+          const confirmPassword = document.getElementById('confirmPassword').value;
+          const agreeTerms = document.getElementById('agreeTerms').checked;
+
+          if (!name || !email || !phone || !gender) {
+            showToast('Please fill in Name, Email, Phone, and Gender.', 'warning'); return;
+          }
+          const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+          if (!emailRegex.test(email)) {
+            showToast('Please enter a valid email address.', 'warning'); return;
+          }
+          if (phone.length !== 10) {
+            showToast('Phone number must be exactly 10 digits.', 'warning'); return;
+          }
+          if (!password || password.length < 8) {
+            showToast('Password must be at least 8 characters.', 'warning'); return;
+          }
+          if (password !== confirmPassword) {
+            showToast('Passwords do not match.', 'error'); return;
+          }
+          if (!agreeTerms) {
+            showToast('Please agree to the Terms & Conditions.', 'warning'); return;
+          }
+
+          try {
+            const res = await fetch(((window.location.protocol === "file:" ? "http://localhost:5000/api" : "/api") + "/auth/check-user"), {
+              method: 'POST',
+              headers: { 'Content-Type': 'application/json' },
+              body: JSON.stringify({ email, phone })
+            });
+            const data = await res.json();
+            if (!res.ok) {
+              showToast(data.error || 'User details already in use', 'error'); return;
+            }
+          } catch (err) {
+            console.error('Check user error:', err);
+            showToast('Error checking details. Server might be down.', 'error'); return;
+          }
+        }
+      }
+
+      // Update indicators
+      document.querySelectorAll('.step-section').forEach(s => s.classList.remove('active'));
+      for (let i = 1; i <= 3; i++) {
+        const ind = document.getElementById(`step${i}Indicator`);
+        const conn = document.getElementById(`conn${i}`);
+        if (i < step) {
+          ind.classList.remove('active'); ind.classList.add('done');
+          if (conn) conn.classList.add('done');
+        } else if (i === step) {
+          ind.classList.add('active'); ind.classList.remove('done');
+          if (conn) conn.classList.remove('done');
+        } else {
+          ind.classList.remove('active', 'done');
+          if (conn) conn.classList.remove('done');
+        }
+      }
+
+      document.getElementById(`step${step}Section`).classList.add('active');
+      currentStep = step;
+      window.scrollTo({ top: 0, behavior: 'smooth' });
+    }
+
+    // ── Form Submit ──
+    document.getElementById('registerForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+
+      const p = document.getElementById('userPhoto').files[0];
+      const i = document.getElementById('idCardPhoto').files[0];
+
+      if (!p || !i) {
+        let missing = [];
+        if (!p) missing.push('Profile Photo');
+        if (!i) missing.push('Aadhaar Card');
+        showToast('Missing: ' + missing.join(' and '), 'warning'); return;
+      }
+
+      if (!window.aadhaarVerified) {
+        showToast('Please upload a valid Aadhaar Card and wait for age verification.', 'error'); return;
+      }
+
+      const aadhaarNumber = document.getElementById('aadhaarNumber').value;
+      if (aadhaarNumber) {
+        try {
+          const res = await fetch(((window.location.protocol === "file:" ? "http://localhost:5000/api" : "/api") + "/auth/check-user"), {
+            method: 'POST', headers: { 'Content-Type': 'application/json' },
+            body: JSON.stringify({ aadhaarNumber })
+          });
+          const data = await res.json();
+          if (!res.ok) { showToast(data.error || 'Aadhaar Card already in use', 'error'); return; }
+        } catch (err) {
+          showToast('Error checking details. Server might be down.', 'error'); return;
+        }
+      }
+
+      const studentSec = document.getElementById('studentSection');
+      if (studentSec && studentSec.style.display === 'block') {
+        const instType = document.getElementById('institutionType').value;
+        const instName = document.getElementById('institutionName').value.trim();
+        const course = (instType === 'College' || instType === 'PU College' || instType === 'Degree College') ? document.getElementById('course').value : true;
+        const studId = document.getElementById('studentIdPhoto').files[0];
+        
+        if (instType === 'School' || instType === 'College' || instType === 'PU College' || instType === 'Degree College') {
+          if (!instName || !course || !studId) {
+            showToast('Please complete all Occupation Details.', 'warning'); return;
+          }
+        }
+        if (!instType) {
+            showToast('Please select your Occupation Status.', 'warning'); return;
+        }
+      }
+
+      const overlay = document.getElementById('registerLoaderOverlay');
+      overlay.classList.add('visible');
+
+      const formData = new FormData();
+      formData.append('name', document.getElementById('name').value.trim());
+      formData.append('email', document.getElementById('email').value.trim());
+      formData.append('phone', '+91' + document.getElementById('phone').value.trim());
+      formData.append('gender', document.getElementById('gender').value);
+      formData.append('password', document.getElementById('password').value);
+      formData.append('age', document.getElementById('age').value);
+      formData.append('aadhaarNumber', document.getElementById('aadhaarNumber').value);
+      if (document.getElementById('dob')) formData.append('dob', document.getElementById('dob').value);
+      formData.append('userPhoto', p);
+      formData.append('idCardPhoto', i);
+
+      if (studentSec && studentSec.style.display === 'block') {
+        formData.append('institutionType', document.getElementById('institutionType').value || '');
+        formData.append('institutionName', document.getElementById('institutionName').value.trim() || '');
+        formData.append('course', document.getElementById('course').value || '');
+        formData.append('studentIdNumber', document.getElementById('studentIdNumber').value || '');
+        formData.append('passingYear', document.getElementById('passingYear').value || '');
+        const sPhoto = document.getElementById('studentIdPhoto').files[0];
+        if (sPhoto) formData.append('studentIdPhoto', sPhoto);
+      }
+
+      try {
+        const res = await fetch(((window.location.protocol === "file:" ? "http://localhost:5000/api" : "/api") + "/auth/register"), {
+          method: 'POST', body: formData
+        });
+        const data = await res.json();
+        overlay.classList.remove('visible');
+
+        if (res.ok) {
+          showToast('Account created successfully! Redirecting...', 'success');
+          sessionStorage.clear();
+          
+          if (data.token) {
+            localStorage.setItem('token', data.token);
+            localStorage.setItem('userRole', data.role);
+            
+            setTimeout(() => {
+              if (data.role === 'conductor') {
+                window.location.href = 'conductor.html';
+              } else if (data.role === 'admin') {
+                window.location.href = 'admin.html';
+              } else {
+                window.location.href = 'index.html';
+              }
+            }, 1500);
+          } else {
+            setTimeout(() => window.location.href = 'login.html', 1500);
+          }
+        } else {
+          showToast(data.error || 'Registration failed. Please try again.', 'error');
+        }
+      } catch (err) {
+        overlay.classList.remove('visible');
+        showToast('Connection error. Please try again.', 'error');
+      }
+    });
+
+    // ── File Preview ──
+    function previewFile(input, previewId, nameId) {
+      const file = input.files[0];
+      if (!file) return;
+      document.getElementById(nameId).textContent = file.name;
+      const reader = new FileReader();
+      reader.onload = e => {
+        const img = document.getElementById(previewId);
+        img.src = e.target.result;
+        img.style.display = 'block';
+      };
+      reader.readAsDataURL(file);
+    }
+
+    // ── Modals ──
+    function openSampleModal() {
+      const m = document.getElementById('sampleModal');
+      m.style.display = 'flex';
+      setTimeout(() => m.style.opacity = '1', 10);
+    }
+    function closeSampleModal() {
+      const m = document.getElementById('sampleModal');
+      m.style.opacity = '0';
+      setTimeout(() => m.style.display = 'none', 300);
+    }
+    function openProfileSampleModal() {
+      const gender = document.getElementById('gender').value;
+      document.getElementById('profileSampleImg').src = gender === 'Female' ? 'sample_profile_female.png' : 'sample_profile_male.png';
+      const m = document.getElementById('sampleProfileModal');
+      m.style.display = 'flex';
+      setTimeout(() => m.style.opacity = '1', 10);
+    }
+    function closeProfileSampleModal() {
+      const m = document.getElementById('sampleProfileModal');
+      m.style.opacity = '0';
+      setTimeout(() => m.style.display = 'none', 300);
+    }
+
+    // ── Aadhaar OCR ──
+    window.aadhaarVerified = false;
+
+    async function processAadhaar(input) {
+      window.aadhaarVerified = false;
+      const file = input.files[0];
+      if (!file) return;
+      const icon = document.getElementById('aadhaarScanIcon');
+      const text = document.getElementById('aadhaarScanText');
+      const statusSpan = document.getElementById('aadhaarStatus');
+
+      icon.className = 'fas fa-spinner fa-spin';
+      icon.style.color = '#6C3FD6';
+      text.textContent = 'Scanning Aadhaar... Please wait.';
+      if (statusSpan) statusSpan.textContent = '(Scanning...)';
+
+      try {
+        const result = await Tesseract.recognize(file, 'eng');
+        const textData = result.data.text;
+        const isAadhaar = /aadhaar|aadhar|government of india|dob|year of birth/i.test(textData) || /\d{4}\s\d{4}\s\d{4}/.test(textData);
+        if (!isAadhaar) throw new Error('NOT_AADHAAR');
+
+        const dobMatch = textData.match(/(?:DOB|Year of Birth|à¤œà¤¨à¥à¤® à¤¤à¤¿à¤¥à¤¿|DOB[:\s]*)[^\d]*(\d{2}\/\d{2}\/\d{4}|\d{4})/i);
+        if (dobMatch && dobMatch[1]) {
+          const dateStr = dobMatch[1];
+          let age = 0;
+          const currentYear = new Date().getFullYear();
+          if (dateStr.length === 4) {
+            age = currentYear - parseInt(dateStr);
+          } else {
+            const parts = dateStr.split('/');
+            const dobDate = new Date(parts[2], parts[1] - 1, parts[0]);
+            const today = new Date();
+            age = today.getFullYear() - dobDate.getFullYear();
+            const m = today.getMonth() - dobDate.getMonth();
+            if (m < 0 || (m === 0 && today.getDate() < dobDate.getDate())) age--;
+          }
+          if (age > 0) {
+            document.getElementById('age').value = age;
+            let dobHidden = document.getElementById('dob');
+            if (!dobHidden) {
+              dobHidden = document.createElement('input');
+              dobHidden.type = 'hidden'; dobHidden.id = 'dob';
+              document.body.appendChild(dobHidden);
+            }
+            dobHidden.value = dateStr;
+            text.textContent = `âœ“ Age detected: ${age} years`;
+            if (statusSpan) statusSpan.textContent = `(Age: ${age})`;
+            icon.className = 'fas fa-check-circle';
+            icon.style.color = '#10B981';
+            showToast('Age auto-filled from Aadhaar!', 'success');
+
+            const aadhaarMatch = textData.match(/\b\d{4}\s\d{4}\s\d{4}\b/);
+            if (aadhaarMatch) {
+              const extractedAadhaar = aadhaarMatch[0];
+              document.getElementById('aadhaarNumber').value = extractedAadhaar;
+              const res = await fetch(((window.location.protocol === "file:" ? "http://localhost:5000/api" : "/api") + "/auth/check-user"), {
+                method: 'POST', headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ aadhaarNumber: extractedAadhaar })
+              });
+              if (!res.ok) throw new Error('AADHAAR_EXISTS');
+            }
+
+            if (age <= 24) {
+              document.getElementById('studentSection').style.display = 'block';
+              const instSelect = document.getElementById('institutionType');
+              let opts = '<option value="" disabled selected>Select your current status</option>';
+              if (age >= 6 && age <= 16) {
+                opts += '<option value="School">School</option>';
+              } else if (age > 16 && age <= 18) {
+                opts += '<option value="PU College">PU College</option>';
+              } else if (age > 18 && age <= 24) {
+                opts += '<option value="Degree College">Degree College</option>';
+              }
+              opts += '<option value="Job">Job</option><option value="No Job">No Job</option>';
+              instSelect.innerHTML = opts;
+              handleInstitutionTypeChange(); // Reset fields
+            } else {
+              document.getElementById('studentSection').style.display = 'none';
+            }
+            window.aadhaarVerified = true;
+          } else {
+            throw new Error('Invalid age');
+          }
+        } else {
+          throw new Error('NO_DOB');
+        }
+      } catch (error) {
+        console.error(error);
+        if (error.message === 'AADHAAR_EXISTS') {
+          text.textContent = 'This Aadhaar card is already registered.';
+          if (statusSpan) statusSpan.textContent = '(Already in use)';
+          showToast('Aadhaar Card already registered.', 'error');
+        } else if (error.message === 'NOT_AADHAAR') {
+          text.textContent = 'Please upload a valid Aadhaar card.';
+          if (statusSpan) statusSpan.textContent = '(Invalid document)';
+          showToast('This does not look like an Aadhaar card.', 'error');
+        } else if (error.message === 'NO_DOB' || error.message === 'Invalid age') {
+          text.textContent = 'Could not read Date of Birth. Try a clearer photo.';
+          if (statusSpan) statusSpan.textContent = '(DOB missing)';
+          showToast('Could not verify age from this image.', 'error');
+        } else {
+          text.textContent = 'Scan failed. Please upload a clearer image.';
+          if (statusSpan) statusSpan.textContent = '(Scan failed)';
+        }
+        icon.className = 'fas fa-times-circle';
+        icon.style.color = '#EF4444';
+      }
+    }
+
+    // ── College/School Data ──
+    const collegeData = {
+      "St Aloysius College, Mangalore": ["B.Com","BBA","BCA","BA","B.Sc","MBA","M.Sc"],
+      "St Agnes College, Mangalore": ["B.Com","BBA","BCA","BA","B.Sc","M.Com"],
+      "University College, Mangalore": ["BA","B.Com","B.Sc","BCA","MA"],
+      "Canara College, Mangalore": ["B.Com","BBA","BCA","B.Sc","M.Com"],
+      "Canara Evening College, Mangalore": ["B.Com"],
+      "Besant Women's College, Mangalore": ["BBA","B.Sc","BCA","BA","B.Com"],
+      "Besant Evening College, Mangalore": ["B.Com","M.Com"],
+      "Govinda Dasa College, Surathkal, Mangalore": ["B.Com","BBA","BCA","BA","B.Sc"],
+      "Father Muller's College, Mangalore": ["BASLP","M.Sc Audiology"],
+      "Dr. M.V. Shetty Institute, Mangalore": ["BSW","BCA","MSW"],
+      "AJ Institute of Management, Mangalore": ["MBA"],
+      "Hira Women's College, Mangalore": ["BA","B.Com","BCA"],
+      "Karavali College, Mangalore": ["B.Com","BHM","Interior Design"],
+      "Indus College, Mangalore": ["B.Com","BBA","BCA"],
+      "Milagres College, Mangalore": ["B.Com","Hospitality Science","Logistics"],
+      "Padua College of Commerce & Management, Mangalore": ["B.Com","BBA","BCA"],
+      "Shree Devi College, Mangalore": ["B.Com","BBA"],
+      "Shree Devi College of Information Science, Mangalore": ["BCA","AI","Cyber Security"],
+      "SDM College of Business Management, Mangalore": ["B.Com","BCA","BBA"],
+      "Sri Gokarnanatheshwara College, Mangalore": ["BA","B.Com","M.Com"],
+      "Sri Narayanaguru College, Mangalore": ["B.Com"],
+      "Srinivas University Campus, Mangalore": ["BBA","BCA","MBA"],
+      "St Raymonds College, Mangalore": ["B.Com","BCA"],
+      "Vivekananda College, Mangalore": ["BA","B.Sc","B.Com","BCA"],
+      "Yenepoya College, Mangalore": ["Commerce","Management","Science"],
+      "St Joseph Engineering College, Mangalore": ["Engineering","MBA","MCA"],
+      "Mangalore University, Mangalore": ["MBA","M.Com","MSc","MA"],
+      "Government First Grade College, Mangalore": ["BA","B.Com","B.Sc"],
+      "Government Women's College, Mangalore": ["BA","B.Com","B.Sc","BCA"]
+    };
+
+    const schoolData = [
+      "St Aloysius Gonzaga School, Kodialbail, Mangalore",
+      "St Aloysius High School, Light House Hill Road, Mangalore",
+      "Lourdes Central School Bejai Mangalore CBSE, Bejai, Mangalore",
+      "Mount Carmel Central School, Maryhill, Konchady",
+      "Presidency School Mangalore, Vamanjoor, Mangalore",
+      "Podar International School Mangalore (CBSE), Kottara Chowki, Mangalore",
+      "PRESTIGE International School, Jeppinamogaru, Mangalore",
+      "St Theresa's ICSE School, Bendoor, Mangalore",
+      "Kendriya Vidyalaya - Kankanady, Kankanady, Mangalore",
+      "Kendriya Vidyalaya - Panambur, Panambur, Mangalore",
+      "DPS MRPL School, Surathkal, Mangalore",
+      "The Yenepoya School, Jeppinamogaru, Mangalore",
+      "Cambridge School, Kulashekara, Mangalore",
+      "Noble High School Kunjathbail, Kunjathbail, Mangalore",
+      "Canara High School, Dongerkery, Mangalore",
+      "Canara CBSE School, Kodialbail, Mangalore",
+      "Ryan International School, Surathkal, Mangalore",
+      "Sri Chaitanya School, Bangrakuloor, Mangalore",
+      "Holy Cross School, Jeppinamogaru, Mangalore",
+      "Milagres School, Hampankatta, Mangalore",
+      "St Lawrence School, Bondel, Mangalore",
+      "Little Flower School, Kankanady, Mangalore",
+      "Oxford School, Pumpwell, Mangalore"
+    ];
+
+    window.addEventListener('DOMContentLoaded', () => {
+      const collegeList = document.getElementById('collegeList');
+      Object.keys(collegeData).forEach(c => {
+        const opt = document.createElement('option'); opt.value = c; collegeList.appendChild(opt);
+      });
+      const schoolList = document.getElementById('schoolList');
+      schoolData.forEach(s => {
+        const opt = document.createElement('option'); opt.value = s; schoolList.appendChild(opt);
+      });
+
+      // Restore session state
+      const fieldsToSave = ['name','email','phone','gender','institutionType','schoolName','collegeName','course','studentIdNumber','passingYear'];
+      fieldsToSave.forEach(id => {
+        const el = document.getElementById(id);
+        if (el) {
+          const saved = sessionStorage.getItem('registerForm_' + id);
+          if (saved !== null) el.value = saved;
+          el.addEventListener('input', () => sessionStorage.setItem('registerForm_' + id, el.value));
+          el.addEventListener('change', () => sessionStorage.setItem('registerForm_' + id, el.value));
+        }
+      });
+
+      const instType = document.getElementById('institutionType');
+      if (instType && instType.value) handleInstitutionTypeChange();
+      const colName = document.getElementById('collegeName');
+      if (colName && colName.value) handleCollegeChange();
+    });
+
+    function handleInstitutionTypeChange() {
+      const type = document.getElementById('institutionType') ? document.getElementById('institutionType').value : '';
+      document.getElementById('institutionName').value = '';
+      document.getElementById('schoolName').value = '';
+      document.getElementById('collegeName').value = '';
+      if(document.getElementById('companyName')) document.getElementById('companyName').value = '';
+      document.getElementById('course').value = '';
+      document.getElementById('courseList').innerHTML = '';
+      
+      document.getElementById('schoolNameGroup').style.display = type === 'School' ? 'block' : 'none';
+      document.getElementById('collegeNameGroup').style.display = (type === 'PU College' || type === 'Degree College' || type === 'College') ? 'block' : 'none';
+      document.getElementById('courseGroup').style.display = (type === 'PU College' || type === 'Degree College' || type === 'College') ? 'block' : 'none';
+      if(document.getElementById('companyNameGroup')) document.getElementById('companyNameGroup').style.display = 'none';
+      
+      const needsId = (type === 'School' || type === 'PU College' || type === 'Degree College' || type === 'College');
+      if(document.getElementById('studentIdGroup')) document.getElementById('studentIdGroup').style.display = needsId ? 'block' : 'none';
+      if(document.getElementById('passingYearGroup')) document.getElementById('passingYearGroup').style.display = needsId ? 'block' : 'none';
+      if(document.getElementById('studentIdPhotoGroup')) document.getElementById('studentIdPhotoGroup').style.display = needsId ? 'block' : 'none';
+    }
+
+    function handleCollegeChange() {
+      const college = document.getElementById('collegeName').value;
+      document.getElementById('institutionName').value = college;
+      const courseList = document.getElementById('courseList');
+      courseList.innerHTML = '';
+      document.getElementById('course').value = '';
+      if (collegeData[college]) {
+        collegeData[college].forEach(c => {
+          const opt = document.createElement('option'); opt.value = c; courseList.appendChild(opt);
+        });
+      }
+    }
+  </script>
+</body>
+</html>
+
+
+
+
+
+

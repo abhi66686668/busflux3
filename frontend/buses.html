@@ -1,0 +1,339 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Available Buses - BusFlux</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="style.css">  <link rel="stylesheet" href="theme.css">
+
+  <style>
+    /* ── BOOKING MODAL ── */
+    .bk-overlay {
+      position: fixed; inset: 0;
+      background: rgba(0,0,0,.75);
+      backdrop-filter: blur(6px);
+      z-index: 500;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+    }
+    .bk-overlay.open { display: flex; animation: bkFadeIn .25s ease; }
+    @keyframes bkFadeIn { from{opacity:0;transform:scale(.96)} to{opacity:1;transform:scale(1)} }
+
+    .bk-modal {
+      background: #0d1326;
+      border: 1px solid rgba(255,255,255,.09);
+      border-radius: 22px;
+      padding: 36px 32px;
+      width: 100%;
+      max-width: 520px;
+      position: relative;
+    }
+
+    .bk-close {
+      position: absolute; top: 16px; right: 16px;
+      background: rgba(255,255,255,.06); border: none;
+      color: #64748b; width: 34px; height: 34px;
+      border-radius: 8px; cursor: pointer; font-size: 1rem;
+      display: flex; align-items: center; justify-content: center;
+      transition: all .2s;
+    }
+    .bk-close:hover { background: rgba(244,63,94,.15); color: #f43f5e; }
+
+    .bk-title {
+      font-size: 1.2rem; font-weight: 800; margin-bottom: 4px;
+      background: linear-gradient(135deg,#6366f1,#a855f7);
+      -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+    }
+    .bk-subtitle { font-size: .82rem; color: #64748b; margin-bottom: 24px; }
+
+    .bk-route-bar {
+      display: flex; align-items: center; gap: 10px;
+      background: rgba(99,102,241,.07); border: 1px solid rgba(99,102,241,.15);
+      border-radius: 12px; padding: 12px 16px; margin-bottom: 22px;
+    }
+    .bk-route-bar .city { font-weight: 700; font-size: .95rem; }
+    .bk-route-bar .arrow { color: #6366f1; flex: 1; text-align: center; }
+
+    .bk-label {
+      font-size: .73rem; font-weight: 700; color: #64748b;
+      text-transform: uppercase; letter-spacing: .5px; margin-bottom: 6px;
+    }
+    .bk-select {
+      width: 100%; padding: 11px 14px;
+      background: rgba(15,23,42,.8);
+      border: 1px solid rgba(255,255,255,.09);
+      color: #f1f5f9; border-radius: 10px;
+      font-size: .9rem; font-family: 'Inter', sans-serif;
+      margin-bottom: 16px; cursor: pointer;
+      transition: border-color .2s, box-shadow .2s;
+      appearance: none;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' fill='%2364748b' viewBox='0 0 24 24'%3E%3Cpath d='M7 10l5 5 5-5z'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: right 12px center;
+      background-size: 20px;
+    }
+    .bk-select:focus { outline: none; border-color: rgba(99,102,241,.5); box-shadow: 0 0 0 3px rgba(99,102,241,.1); }
+    .bk-select option { background: #0d1326; color: #f1f5f9; }
+
+    .bk-row { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+
+    .bk-seats {
+      width: 100%; padding: 11px 14px;
+      background: rgba(15,23,42,.8);
+      border: 1px solid rgba(255,255,255,.09);
+      color: #f1f5f9; border-radius: 10px;
+      font-size: .9rem; font-family: 'Inter', sans-serif;
+      margin-bottom: 20px; transition: border-color .2s;
+    }
+    .bk-seats:focus { outline: none; border-color: rgba(99,102,241,.5); box-shadow: 0 0 0 3px rgba(99,102,241,.1); }
+
+    /* Price Summary Card */
+    .price-card {
+      background: rgba(99,102,241,.06);
+      border: 1px solid rgba(99,102,241,.18);
+      border-radius: 14px; padding: 18px 20px;
+      margin-bottom: 22px;
+    }
+    .price-row {
+      display: flex; justify-content: space-between;
+      align-items: center; font-size: .85rem;
+      padding: 5px 0; color: #94a3b8;
+    }
+    .price-row.total {
+      border-top: 1px solid rgba(255,255,255,.07);
+      margin-top: 10px; padding-top: 12px;
+      font-size: 1.1rem; font-weight: 800; color: #f1f5f9;
+    }
+    .price-row.total span:last-child { color: #a855f7; font-size: 1.3rem; }
+    .price-badge {
+      display: inline-flex; align-items: center; gap: 4px;
+      padding: 3px 10px; border-radius: 20px;
+      font-size: .72rem; font-weight: 700;
+      background: rgba(16,185,129,.1); color: #10b981;
+    }
+
+    .bk-btn {
+      width: 100%; padding: 14px;
+      background: linear-gradient(135deg, #6366f1, #a855f7);
+      border: none; border-radius: 11px;
+      color: #fff; font-size: 1rem; font-weight: 700;
+      cursor: pointer; display: flex; align-items: center;
+      justify-content: center; gap: 8px;
+      transition: all .25s; font-family: 'Inter', sans-serif;
+    }
+    .bk-btn:hover { transform: translateY(-2px); box-shadow: 0 8px 24px rgba(99,102,241,.35); }
+    .bk-btn:disabled { opacity: .6; cursor: not-allowed; transform: none; }
+
+    .warning-msg {
+      background: rgba(245,158,11,.08); border: 1px solid rgba(245,158,11,.2);
+      border-radius: 10px; padding: 10px 14px; font-size: .82rem;
+      color: #f59e0b; margin-bottom: 16px; display: none;
+    }
+  </style>
+
+  <!-- PWA Manifest and Mobile Web App Support -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#1a1c24">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="apple-touch-icon" href="icons/icon-192x192.png">
+  <link rel="stylesheet" href="layout.css">
+</head>
+<body>
+
+  <div class="app-layout">
+    <!-- ── Sidebar ── -->
+    <aside class="sidebar" id="sidebar">
+      <a href="index.html" class="sidebar-logo">
+        <div class="logo-icon"><i class="fas fa-bus-alt"></i></div>
+        <span>Bus<b>Flux</b></span>
+      </a>
+      <nav class="sidebar-nav" id="sidebarNav">
+        <a href="index.html" class="nav-item" id="sideNavHome">
+          <i class="fas fa-home"></i> Home
+        </a>
+        <a href="buses.html" class="nav-item active" id="sideNavBuses">
+          <i class="fas fa-bus"></i> Buses
+        </a>
+        <a href="bookings.html" class="nav-item" id="sideNavBookings">
+          <i class="fas fa-ticket"></i> My Bookings
+        </a>
+        <a href="wallet.html" class="nav-item" id="sideNavWallet">
+          <i class="fas fa-wallet"></i> Wallet
+        </a>
+        <a href="history.html" class="nav-item" id="sideNavHistory">
+          <i class="fas fa-clock-rotate-left"></i> History
+        </a>
+        <div class="nav-section-label">More</div>
+        <a href="#" class="nav-item" onclick="showOffersToast(); return false;">
+          <i class="fas fa-tag"></i> Offers
+        </a>
+        <a href="#" class="nav-item" onclick="scrollToStats(); return false;">
+          <i class="fas fa-location-dot"></i> Track Bus
+        </a>
+        <a href="#" class="nav-item" onclick="showHelpToast(); return false;">
+          <i class="fas fa-circle-question"></i> Help Center
+        </a>
+      </nav>
+      <!-- Promo sidebar -->
+      <div class="sidebar-offer" id="sidebarOffer" style="display:none;">
+        <div class="off-badge">Get 10% OFF</div>
+        <p>On your first booking</p>
+        <div class="coupon">FLUX10 <i class="fas fa-scissors"></i></div>
+      </div>
+      <!-- User bottom -->
+      <div class="sidebar-user" id="sidebarUser" onclick="handleSidebarUserClick()">
+        <div class="sidebar-user-avatar" id="sidebarAvatar">
+          <i class="fas fa-user"></i>
+        </div>
+        <div class="sidebar-user-info">
+          <strong id="sidebarUserName">Hi, Traveler 👋</strong>
+          <a href="login.html" id="sidebarUserAction">Login / Sign up</a>
+        </div>
+      </div>
+    </aside>
+    <!-- Sidebar overlay for mobile -->
+    <div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
+
+    <!-- ── Main Content ── -->
+    <div class="main-content">
+      <!-- Top Bar -->
+      <header class="top-bar">
+        <button class="mobile-menu-btn" onclick="openSidebar()" aria-label="Open menu">
+          <i class="fas fa-bars"></i>
+        </button>
+        <div class="search-bar">
+          <i class="fas fa-search"></i>
+          <input type="text" placeholder="Search routes, cities or bus names..." id="globalSearch"
+            oninput="handleGlobalSearch(this.value)"
+            onkeydown="if(event.key==='Escape'){ this.value=''; handleGlobalSearch(''); this.blur(); }"
+            autocomplete="off">
+        </div>
+      </header>
+
+      <!-- Page Scroll Area -->
+      <div class="page-scroll">
+
+  <div class="container container-wide">
+    <h1>Available <span>Buses</span></h1>
+    <p class="subtitle">Search available routes and schedules</p>
+
+    <div id="busList">
+      <div class="loader-container">
+        <div class="modern-loader"></div>
+        <p class="loader-text">Finding best routes...</p>
+      </div>
+    </div>
+  </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- BOOKING MODAL -->
+  <div class="bk-overlay" id="bookingModal">
+    <div class="bk-modal">
+      <button class="bk-close" onclick="closeBookingModal()"><i class="fas fa-times"></i></button>
+      <div class="bk-title" id="bkBusName">Bus Name</div>
+      <div class="bk-subtitle">Complete your booking</div>
+
+      <div class="bk-route-bar">
+        <div class="city" id="bkFrom">City A</div>
+        <div class="arrow"><i class="fas fa-long-arrow-alt-right"></i></div>
+        <div class="city" id="bkTo">City B</div>
+      </div>
+
+      <div class="bk-row">
+        <div>
+          <div class="bk-label">Boarding Point</div>
+          <select class="bk-select" id="bkBoarding" onchange="updatePrice()"></select>
+        </div>
+        <div>
+          <div class="bk-label">Dropping Point</div>
+          <select class="bk-select" id="bkDropping" onchange="updatePrice()"></select>
+        </div>
+      </div>
+
+      <div class="warning-msg" id="bkWarning">
+        <i class="fas fa-exclamation-circle"></i> <span id="bkWarningText"></span>
+      </div>
+
+      <div class="price-card">
+        <div class="price-row">
+          <span>Passenger Type</span>
+          <span id="bkAgeGroup" style="color:#f1f5f9;"><i class="fas fa-user"></i> Standard</span>
+        </div>
+        <div class="price-row">
+          <span>Base Price (Per Seat)</span>
+          <span id="bkPricePerSeat">₹0</span>
+        </div>
+        <div class="price-row total">
+          <span>Total Fare</span>
+          <span id="bkTotal">₹0</span>
+        </div>
+      </div>
+
+      <div class="bk-label" style="margin-top:5px; margin-bottom:10px;">Select Payment Method</div>
+      <div style="display:flex; gap:15px; margin-bottom: 25px;">
+        <label style="display:flex; align-items:center; gap:8px; cursor:pointer; color:#f1f5f9; font-size:0.9rem;">
+          <input type="radio" name="payMethod" value="razorpay" checked>
+          <i class="fas fa-credit-card" style="color:#6366f1;"></i> Pay via Razorpay
+        </label>
+        <label style="display:flex; align-items:center; gap:8px; cursor:pointer; color:#f1f5f9; font-size:0.9rem;">
+          <input type="radio" name="payMethod" value="wallet">
+          <i class="fas fa-wallet" style="color:#10b981;"></i> BusFlux Wallet
+        </label>
+      </div>
+
+      <button class="bk-btn" id="bkConfirmBtn" onclick="confirmBooking()">
+        <i class="fas fa-shield-halved"></i> Proceed to Pay
+      </button>
+    </div>
+  </div>
+
+  <!-- TICKET SUCCESS MODAL -->
+  <div class="bk-overlay" id="ticketSuccessModal">
+    <div class="bk-modal" style="max-width: 400px; text-align: center;">
+      <div style="font-size: 3rem; color: #10b981; margin-bottom: 10px;"><i class="fas fa-check-circle"></i></div>
+      <h2 style="color: #f1f5f9; margin-bottom: 5px;">Ticket Booked!</h2>
+      <p style="color: #64748b; font-size: 0.9rem; margin-bottom: 20px;">Your seat has been confirmed.</p>
+      
+      <div style="background: #fff; padding: 15px; border-radius: 12px; margin-bottom: 20px; display: inline-block;">
+        <img id="ticketQR" src="" alt="Ticket QR" style="width: 150px; height: 150px;">
+      </div>
+      
+      <div style="background: rgba(255,255,255,0.05); padding: 15px; border-radius: 12px; text-align: left; margin-bottom: 25px;">
+        <div style="font-size: 0.8rem; color: #94a3b8; margin-bottom: 4px;">TICKET ID</div>
+        <div id="ticketIdDisplay" style="font-weight: 700; color: #f1f5f9; font-family: monospace; font-size: 1.1rem; margin-bottom: 12px;">-</div>
+        
+        <div style="font-size: 0.8rem; color: #94a3b8; margin-bottom: 4px;">ROUTE</div>
+        <div id="ticketRouteDisplay" style="font-weight: 700; color: #f1f5f9; font-size: 1rem;">-</div>
+      </div>
+
+      <button class="bk-btn" onclick="closeTicketModal()">Done</button>
+    </div>
+  </div>
+
+  <div id="toastContainer"></div>
+
+  <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
+  <script src="script.js?v=10"></script>
+<script src="ui-layout.js?v=4"></script>
+</body>
+</html>
+
+
+
+
+
+
+
+
+
+
+
+
+

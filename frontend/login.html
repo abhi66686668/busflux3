@@ -1,0 +1,842 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Login to BusFlux "” your seamless bus ticket booking portal.">
+  <title>Login - BusFlux</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#6C3FD6">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <link rel="apple-touch-icon" href="icons/icon-192x192.png">
+
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --primary: #6C3FD6;
+      --primary-dark: #5530b8;
+      --primary-light: #8B5CF6;
+      --primary-gradient: linear-gradient(135deg, #6C3FD6 0%, #8B5CF6 100%);
+      --accent: #7C3AED;
+      --bg-page: #EEEAF8;
+      --bg-card: #FFFFFF;
+      --text-dark: #1A1A2E;
+      --text-medium: #4A4A6A;
+      --text-muted: #9B9BB4;
+      --text-light: #FFFFFF;
+      --border: #E0DBF5;
+      --border-focus: #6C3FD6;
+      --input-bg: #F7F5FD;
+      --success: #10B981;
+      --error: #EF4444;
+      --shadow-card: 0 20px 60px rgba(108, 63, 214, 0.15);
+      --shadow-btn: 0 8px 25px rgba(108, 63, 214, 0.45);
+      --radius-card: 24px;
+      --radius-input: 12px;
+      --radius-btn: 14px;
+      --transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+
+    html, body {
+      height: 100%;
+      font-family: 'Inter', sans-serif;
+      background: var(--bg-page);
+      color: var(--text-dark);
+      overflow-x: hidden;
+    }
+
+    /* ── Page Layout ── */
+    .page-wrapper {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 24px 16px;
+      background: linear-gradient(135deg, #EDE9FE 0%, #F3F0FF 50%, #E8E4FA 100%);
+    }
+
+    .auth-card {
+      background: var(--bg-card);
+      border-radius: var(--radius-card);
+      box-shadow: var(--shadow-card);
+      width: 100%;
+      max-width: 420px;
+      overflow: hidden;
+      animation: cardIn 0.6s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+    }
+
+    @keyframes cardIn {
+      from { opacity: 0; transform: translateY(30px); }
+      to { opacity: 1; transform: translateY(0); }
+    }
+
+    /* ── Hero Section ── */
+    .auth-hero {
+      background: linear-gradient(160deg, #F0ECFF 0%, #E8E2FF 100%);
+      padding: 28px 28px 20px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .brand-logo {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      text-decoration: none;
+      margin-bottom: 20px;
+    }
+
+    .brand-logo .logo-icon {
+      width: 34px;
+      height: 34px;
+      background: var(--primary-gradient);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 16px;
+      box-shadow: 0 4px 12px rgba(108, 63, 214, 0.35);
+    }
+
+    .brand-logo .logo-text {
+      font-size: 1.25rem;
+      font-weight: 800;
+      color: var(--text-dark);
+      letter-spacing: -0.3px;
+    }
+
+    .brand-logo .logo-text span {
+      color: var(--primary);
+    }
+
+    .hero-content h1 {
+      font-size: 1.9rem;
+      font-weight: 800;
+      color: var(--text-dark);
+      line-height: 1.2;
+      margin-bottom: 8px;
+    }
+
+    .hero-content p {
+      font-size: 0.9rem;
+      color: var(--text-medium);
+      line-height: 1.5;
+      max-width: 200px;
+    }
+
+    .hero-img-wrap {
+      position: absolute;
+      right: -10px;
+      top: 0;
+      bottom: 0;
+      width: 55%;
+      display: flex;
+      align-items: flex-end;
+      justify-content: flex-end;
+      overflow: hidden;
+    }
+
+    .hero-img-wrap img {
+      width: 100%;
+      max-width: 260px;
+      object-fit: contain;
+      filter: drop-shadow(0 8px 20px rgba(108, 63, 214, 0.2));
+      animation: floatBus 4s ease-in-out infinite;
+    }
+
+    @keyframes floatBus {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-6px); }
+    }
+
+    /* ── Form Body ── */
+    .auth-body {
+      padding: 28px 28px 24px;
+    }
+
+    /* ── Login Tabs ── */
+    .login-tabs {
+      display: flex;
+      border-bottom: 2px solid var(--border);
+      margin-bottom: 24px;
+      gap: 0;
+    }
+
+    .tab-btn {
+      flex: 1;
+      background: none;
+      border: none;
+      cursor: pointer;
+      padding: 10px 14px;
+      font-size: 0.9rem;
+      font-weight: 600;
+      color: var(--text-muted);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 7px;
+      position: relative;
+      transition: var(--transition);
+      font-family: 'Inter', sans-serif;
+    }
+
+    .tab-btn::after {
+      content: '';
+      position: absolute;
+      bottom: -2px;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: var(--primary);
+      border-radius: 2px 2px 0 0;
+      transform: scaleX(0);
+      transition: transform 0.3s ease;
+    }
+
+    .tab-btn.active {
+      color: var(--primary);
+    }
+
+    .tab-btn.active::after {
+      transform: scaleX(1);
+    }
+
+    .tab-btn i {
+      font-size: 0.85rem;
+    }
+
+    /* ── Tab Panels ── */
+    .tab-panel { display: none; }
+    .tab-panel.active { display: block; animation: fadePanel 0.3s ease; }
+    @keyframes fadePanel { from { opacity: 0; transform: translateX(8px); } to { opacity: 1; transform: translateX(0); } }
+
+    /* ── Form Groups ── */
+    .form-group {
+      margin-bottom: 18px;
+    }
+
+    .form-label {
+      display: block;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--text-medium);
+      margin-bottom: 8px;
+      letter-spacing: 0.1px;
+    }
+
+    .input-wrap {
+      position: relative;
+      display: flex;
+      align-items: center;
+    }
+
+    .input-icon {
+      position: absolute;
+      left: 14px;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      pointer-events: none;
+      z-index: 2;
+      transition: color 0.3s;
+    }
+
+    .input-wrap input {
+      width: 100%;
+      padding: 13px 42px 13px 40px;
+      border: 1.5px solid var(--border);
+      border-radius: var(--radius-input);
+      background: var(--input-bg);
+      font-size: 0.9rem;
+      font-family: 'Inter', sans-serif;
+      color: var(--text-dark);
+      outline: none;
+      transition: var(--transition);
+    }
+
+    .input-wrap input::placeholder { color: var(--text-muted); font-size: 0.88rem; }
+
+    .input-wrap input:focus {
+      border-color: var(--border-focus);
+      background: #FFFFFF;
+      box-shadow: 0 0 0 3px rgba(108, 63, 214, 0.12);
+    }
+
+    .input-wrap input:focus + .input-icon,
+    .input-wrap:focus-within .input-icon { color: var(--primary); }
+
+    .input-action-btn {
+      position: absolute;
+      right: 12px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      color: var(--text-muted);
+      font-size: 0.9rem;
+      padding: 4px;
+      transition: color 0.3s;
+      z-index: 2;
+    }
+
+    .input-action-btn:hover { color: var(--primary); }
+
+    /* ── Remember & Forgot Row ── */
+    .remember-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      margin-bottom: 20px;
+    }
+
+    .remember-check {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      cursor: pointer;
+      font-size: 0.85rem;
+      color: var(--text-medium);
+      font-weight: 500;
+    }
+
+    .remember-check input[type="checkbox"] {
+      width: 16px;
+      height: 16px;
+      accent-color: var(--primary);
+      cursor: pointer;
+    }
+
+    .forgot-link {
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: var(--primary);
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .forgot-link:hover { color: var(--primary-dark); }
+
+    /* ── Primary Button ── */
+    .btn-primary {
+      width: 100%;
+      padding: 14px 24px;
+      background: var(--primary-gradient);
+      color: white;
+      border: none;
+      border-radius: var(--radius-btn);
+      font-size: 1rem;
+      font-weight: 700;
+      font-family: 'Inter', sans-serif;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      box-shadow: var(--shadow-btn);
+      transition: var(--transition);
+      letter-spacing: 0.2px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .btn-primary::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(135deg, rgba(255,255,255,0.15) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .btn-primary:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 12px 35px rgba(108, 63, 214, 0.55);
+    }
+
+    .btn-primary:active { transform: translateY(0); }
+
+    .btn-primary .btn-arrow {
+      width: 28px;
+      height: 28px;
+      background: rgba(255,255,255,0.2);
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.8rem;
+      flex-shrink: 0;
+      transition: transform 0.3s;
+    }
+
+    .btn-primary:hover .btn-arrow { transform: translateX(3px); }
+
+    /* ── Divider ── */
+    .or-divider {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin: 20px 0;
+      color: var(--text-muted);
+      font-size: 0.82rem;
+      font-weight: 500;
+    }
+
+    .or-divider::before, .or-divider::after {
+      content: '';
+      flex: 1;
+      height: 1px;
+      background: var(--border);
+    }
+
+    /* ── Social Buttons ── */
+    .social-row {
+      display: flex;
+      gap: 12px;
+      margin-bottom: 4px;
+    }
+
+    .social-btn {
+      flex: 1;
+      padding: 11px 10px;
+      border: 1.5px solid var(--border);
+      border-radius: 12px;
+      background: var(--bg-card);
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 8px;
+      font-size: 0.82rem;
+      font-weight: 600;
+      color: var(--text-medium);
+      font-family: 'Inter', sans-serif;
+      transition: var(--transition);
+    }
+
+    .social-btn:hover {
+      border-color: var(--border-focus);
+      background: #F7F5FD;
+      transform: translateY(-1px);
+    }
+
+    .social-btn img {
+      width: 18px;
+      height: 18px;
+    }
+
+    .social-btn .fab {
+      font-size: 18px;
+    }
+
+    .social-btn .fa-google { color: #EA4335; }
+    .social-btn .fa-apple { color: #000; font-size: 20px; }
+    .social-btn .fa-facebook { color: #1877F2; }
+
+    /* ── Trust Badge ── */
+    .trust-badge {
+      background: linear-gradient(135deg, #F0ECFF 0%, #E8E2FF 100%);
+      border-radius: 14px;
+      padding: 14px 16px;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      margin-top: 20px;
+    }
+
+    .trust-icon {
+      width: 40px;
+      height: 40px;
+      background: var(--primary-gradient);
+      border-radius: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: white;
+      font-size: 1rem;
+      flex-shrink: 0;
+    }
+
+    .trust-text strong {
+      font-size: 0.88rem;
+      font-weight: 700;
+      color: var(--text-dark);
+      display: block;
+      margin-bottom: 2px;
+    }
+
+    .trust-text p {
+      font-size: 0.78rem;
+      color: var(--text-medium);
+      line-height: 1.4;
+    }
+
+    .trust-shield-img {
+      margin-left: auto;
+      font-size: 2.2rem;
+      opacity: 0.25;
+    }
+
+    /* ── Footer ── */
+    .auth-footer {
+      text-align: center;
+      padding: 16px 28px 20px;
+      border-top: 1px solid var(--border);
+      font-size: 0.88rem;
+      color: var(--text-muted);
+    }
+
+    .auth-footer a {
+      color: var(--primary);
+      font-weight: 700;
+      text-decoration: none;
+      transition: color 0.3s;
+    }
+
+    .auth-footer a:hover { color: var(--primary-dark); }
+
+    /* ── Phone input ── */
+    .phone-prefix {
+      display: flex;
+      align-items: center;
+      gap: 6px;
+      position: absolute;
+      left: 12px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--text-dark);
+      z-index: 3;
+      cursor: default;
+    }
+
+    .phone-prefix .flag { font-size: 1.1rem; }
+    .phone-prefix .chevron { color: var(--text-muted); font-size: 0.65rem; margin-left: 2px; }
+
+    .phone-input { padding-left: 95px !important; }
+
+    /* ── Loader overlay ── */
+    .loader-overlay {
+      position: fixed;
+      inset: 0;
+      background: rgba(255,255,255,0.85);
+      display: none;
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 16px;
+      z-index: 9999;
+      backdrop-filter: blur(6px);
+    }
+
+    .loader-overlay.visible { display: flex; }
+
+    .spinner {
+      width: 48px;
+      height: 48px;
+      border: 4px solid rgba(108,63,214,0.15);
+      border-top-color: var(--primary);
+      border-radius: 50%;
+      animation: spin 0.8s linear infinite;
+    }
+
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    .loader-overlay p {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--primary);
+    }
+
+    /* ── Toast ── */
+    #toastContainer {
+      position: fixed;
+      bottom: 20px;
+      right: 20px;
+      z-index: 99999;
+      display: flex;
+      flex-direction: column-reverse;
+      gap: 10px;
+    }
+
+    .toast {
+      background: white;
+      border-radius: 12px;
+      padding: 14px 18px;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.15);
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      font-size: 0.88rem;
+      font-weight: 600;
+      color: var(--text-dark);
+      animation: toastIn 0.4s ease;
+      max-width: 320px;
+      border-left: 4px solid var(--primary);
+    }
+
+    .toast.error { border-left-color: var(--error); }
+    .toast.success { border-left-color: var(--success); }
+
+    @keyframes toastIn { from { opacity: 0; transform: translateX(20px); } to { opacity: 1; transform: translateX(0); } }
+
+    /* ── Responsive ── */
+    @media (max-width: 480px) {
+      .auth-card { border-radius: 20px; }
+      .auth-hero { padding: 22px 20px 16px; }
+      .auth-body { padding: 22px 20px 18px; }
+      .hero-content h1 { font-size: 1.6rem; }
+      .hero-img-wrap { width: 48%; }
+      .auth-footer { padding: 14px 20px 18px; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- Page Wrapper -->
+  <div class="page-wrapper">
+    <div class="auth-card">
+
+      <!-- Hero -->
+      <div class="auth-hero">
+        <a href="index.html" class="brand-logo">
+          <div class="logo-icon"><i class="fas fa-bus-alt"></i></div>
+          <span class="logo-text">Bus<span>Flux</span></span>
+        </a>
+
+        <div class="hero-content">
+          <h1>Welcome<br>Back! 👋</h1>
+          <p>Log in to continue your journey with BusFlux.</p>
+        </div>
+
+        <div class="hero-img-wrap">
+          <img src="busflux_bus_hero.png" alt="BusFlux bus" onerror="this.style.display='none'">
+        </div>
+      </div>
+
+      <!-- Form Body -->
+      <div class="auth-body">
+
+        <!-- Email Login -->
+        <div id="emailPanel">
+          <form id="loginForm" novalidate>
+
+            <!-- Email -->
+            <div class="form-group">
+              <label class="form-label" for="loginEmail">Email Address</label>
+              <div class="input-wrap">
+                <i class="fas fa-envelope input-icon"></i>
+                <input type="email" id="loginEmail" name="email" placeholder="Enter your email address" required autocomplete="email">
+              </div>
+            </div>
+
+            <!-- Password -->
+            <div class="form-group">
+              <label class="form-label" for="loginPassword">Password</label>
+              <div class="input-wrap">
+                <i class="fas fa-lock input-icon"></i>
+                <input type="password" id="loginPassword" name="password" placeholder="Enter your password" required autocomplete="current-password">
+                <button type="button" class="input-action-btn" id="toggleLoginPwd" onclick="togglePwd('loginPassword', this)" aria-label="Toggle password visibility">
+                  <i class="fas fa-eye"></i>
+                </button>
+              </div>
+            </div>
+
+            <!-- Remember + Forgot -->
+            <div class="remember-row">
+              <label class="remember-check">
+                <input type="checkbox" id="rememberMe"> Remember me
+              </label>
+              <a href="forgot.html" class="forgot-link">Forgot Password?</a>
+            </div>
+
+            <!-- Submit -->
+            <button type="submit" class="btn-primary" id="loginBtn">
+              Login
+              <span class="btn-arrow"><i class="fas fa-arrow-right"></i></span>
+            </button>
+
+          </form>
+        </div>
+
+
+
+        <!-- Social -->
+        <div class="or-divider">or continue with</div>
+        <div class="social-row">
+          <button class="social-btn" onclick="socialLogin('google')" type="button">
+            <i class="fab fa-google"></i> Google
+          </button>
+          <button class="social-btn" onclick="socialLogin('apple')" type="button">
+            <i class="fab fa-apple"></i> Apple
+          </button>
+          <button class="social-btn" onclick="socialLogin('facebook')" type="button">
+            <i class="fab fa-facebook"></i> Facebook
+          </button>
+        </div>
+
+        <!-- Trust Badge -->
+        <div class="trust-badge">
+          <div class="trust-icon"><i class="fas fa-shield-alt"></i></div>
+          <div class="trust-text">
+            <strong>Your Journey is Safe with Us</strong>
+            <p>We use advanced encryption to keep your data safe and secure.</p>
+          </div>
+          <div class="trust-shield-img"><i class="fas fa-lock" style="font-size:2.5rem; opacity:0.1; color:#a855f7;"></i></div>
+        </div>
+
+      </div>
+
+      <!-- Footer -->
+      <div class="auth-footer">
+        Don't have an account? <a href="register.html">Create Account</a>
+      </div>
+
+    </div>
+  </div>
+
+  <!-- Loader -->
+  <div class="loader-overlay" id="loginLoaderOverlay">
+    <div class="spinner"></div>
+    <p>Authenticating...</p>
+  </div>
+
+  <!-- Toast -->
+  <div id="toastContainer"></div>
+
+  <script>
+    // ── Tab Switching ──
+    function switchTab(tab) {
+      document.querySelectorAll('.tab-btn').forEach(b => { b.classList.remove('active'); b.setAttribute('aria-selected', 'false'); });
+      document.querySelectorAll('.tab-panel').forEach(p => p.classList.remove('active'));
+      document.getElementById(tab + 'TabBtn').classList.add('active');
+      document.getElementById(tab + 'TabBtn').setAttribute('aria-selected', 'true');
+      document.getElementById(tab + 'Panel').classList.add('active');
+    }
+
+    // ── Toggle Password ──
+    function togglePwd(inputId, btn) {
+      const inp = document.getElementById(inputId);
+      const icon = btn.querySelector('i');
+      if (inp.type === 'password') {
+        inp.type = 'text';
+        icon.classList.replace('fa-eye', 'fa-eye-slash');
+      } else {
+        inp.type = 'password';
+        icon.classList.replace('fa-eye-slash', 'fa-eye');
+      }
+    }
+
+    // ── Toast ──
+    function showToast(msg, type = 'info') {
+      const t = document.createElement('div');
+      t.className = 'toast ' + type;
+      const icons = { error: 'fa-circle-xmark', success: 'fa-circle-check', info: 'fa-circle-info' };
+      const colors = { error: '#EF4444', success: '#10B981', info: '#6C3FD6' };
+      t.innerHTML = `<i class="fas ${icons[type] || 'fa-circle-info'}" style="color:${colors[type]||'#6C3FD6'};font-size:1.1rem;"></i> ${msg}`;
+      document.getElementById('toastContainer').appendChild(t);
+      setTimeout(() => t.remove(), 4000);
+    }
+
+    // ── Social Login ──
+    function socialLogin(provider) {
+      showToast(`${provider.charAt(0).toUpperCase() + provider.slice(1)} login coming soon!`, 'info');
+    }
+
+    // ── Email Login Form ──
+    document.getElementById('loginForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const email = document.getElementById('loginEmail').value.trim();
+      const password = document.getElementById('loginPassword').value;
+
+      if (!email || !password) { showToast('Please fill in all fields.', 'error'); return; }
+
+      const overlay = document.getElementById('loginLoaderOverlay');
+      overlay.classList.add('visible');
+
+      try {
+        const res = await fetch(((window.location.protocol === "file:" ? "http://localhost:5000/api" : "/api") + "/auth/login"), {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, password })
+        });
+        const data = await res.json();
+
+        overlay.classList.remove('visible');
+
+        if (res.ok && data.token) {
+          localStorage.setItem('token', data.token);
+          localStorage.setItem('userRole', data.role || '');
+          showToast('Login successful! Redirecting...', 'success');
+          setTimeout(() => {
+            const role = (data.role || localStorage.getItem('userRole') || '').toLowerCase();
+            if (role === 'admin') window.location.href = 'admin.html';
+            else if (role === 'conductor') window.location.href = 'conductor.html';
+            else window.location.href = 'index.html';
+          }, 1200);
+        } else {
+          showToast(data.message || 'Invalid credentials. Please try again.', 'error');
+        }
+      } catch (err) {
+        overlay.classList.remove('visible');
+        showToast('Connection error. Please try again.', 'error');
+      }
+    });
+
+    // ── Phone Login Form ──
+    document.getElementById('phoneLoginForm').addEventListener('submit', async function(e) {
+      e.preventDefault();
+      const phone = document.getElementById('loginPhone').value.trim();
+      const password = document.getElementById('loginPhonePassword').value;
+
+      if (!phone || phone.length < 10) { showToast('Please enter a valid 10-digit phone number.', 'error'); return; }
+      if (!password) { showToast('Please enter your password.', 'error'); return; }
+
+      const overlay = document.getElementById('loginLoaderOverlay');
+      overlay.classList.add('visible');
+
+      try {
+        const res = await fetch(((window.location.protocol === "file:" ? "http://localhost:5000/api" : "/api") + "/auth/login"), {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ phone: '+91' + phone, password })
+        });
+        const data = await res.json();
+        overlay.classList.remove('visible');
+
+        if (res.ok && data.token) {
+          localStorage.setItem('token', data.token);
+          localStorage.setItem('userRole', data.role || '');
+          showToast('Login successful! Redirecting...', 'success');
+          setTimeout(() => {
+            const role = (data.role || localStorage.getItem('userRole') || '').toLowerCase();
+            if (role === 'admin') window.location.href = 'admin.html';
+            else if (role === 'conductor') window.location.href = 'conductor.html';
+            else window.location.href = 'index.html';
+          }, 1200);
+        } else {
+          showToast(data.message || 'Invalid credentials. Please try again.', 'error');
+        }
+      } catch (err) {
+        overlay.classList.remove('visible');
+        showToast('Connection error. Please try again.', 'error');
+      }
+    });
+
+    // ── Clear existing session when visiting login page ──
+    (function() {
+      localStorage.removeItem('token');
+      localStorage.removeItem('userRole');
+      localStorage.removeItem('user');
+    })();
+  </script>
+</body>
+</html>
+
+
+
+
+
+
+
+

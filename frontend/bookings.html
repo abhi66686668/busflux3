@@ -1,0 +1,107 @@
+﻿<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>My Bookings - BusFlux</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="style.css">
+  <link rel="stylesheet" href="theme.css">
+
+  <!-- PWA Manifest and Mobile Web App Support -->
+  <link rel="manifest" href="manifest.json">
+  <meta name="theme-color" content="#1a1c24">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+  <link rel="apple-touch-icon" href="icons/icon-192x192.png">
+  <link rel="stylesheet" href="layout.css">
+</head>
+<body>
+
+  <div class="app-layout">
+    <!-- ── Sidebar ── -->
+    <aside class="sidebar" id="sidebar">
+      <a href="index.html" class="sidebar-logo">
+        <div class="logo-icon"><i class="fas fa-bus-alt"></i></div>
+        <span>Bus<b>Flux</b></span>
+      </a>
+      <nav class="sidebar-nav" id="sidebarNav">
+        <a href="index.html" class="nav-item" id="sideNavHome">
+          <i class="fas fa-home"></i> Home
+        </a>
+        <a href="buses.html" class="nav-item" id="sideNavBuses">
+          <i class="fas fa-bus"></i> Buses
+        </a>
+        <a href="bookings.html" class="nav-item active" id="sideNavBookings">
+          <i class="fas fa-ticket"></i> My Bookings
+        </a>
+        <a href="wallet.html" class="nav-item" id="sideNavWallet">
+          <i class="fas fa-wallet"></i> Wallet
+        </a>
+        <a href="history.html" class="nav-item" id="sideNavHistory">
+          <i class="fas fa-clock-rotate-left"></i> History
+        </a>
+        <div class="nav-section-label">More</div>
+        <a href="#" class="nav-item" onclick="showOffersToast(); return false;">
+          <i class="fas fa-tag"></i> Offers
+        </a>
+        <a href="#" class="nav-item" onclick="scrollToStats(); return false;">
+          <i class="fas fa-location-dot"></i> Track Bus
+        </a>
+        <a href="#" class="nav-item" onclick="showHelpToast(); return false;">
+          <i class="fas fa-circle-question"></i> Help Center
+        </a>
+      </nav>
+      <!-- Promo sidebar -->
+      <div class="sidebar-offer" id="sidebarOffer" style="display:none;">
+        <div class="off-badge">Get 10% OFF</div>
+        <p>On your first booking</p>
+        <div class="coupon">FLUX10 <i class="fas fa-scissors"></i></div>
+      </div>
+      <!-- User bottom -->
+      <div class="sidebar-user" id="sidebarUser" onclick="handleSidebarUserClick()">
+        <div class="sidebar-user-avatar" id="sidebarAvatar">
+          <i class="fas fa-user"></i>
+        </div>
+        <div class="sidebar-user-info">
+          <strong id="sidebarUserName">Hi, Traveler 👋</strong>
+          <a href="login.html" id="sidebarUserAction">Login / Sign up</a>
+        </div>
+      </div>
+    </aside>
+    <!-- Sidebar overlay for mobile -->
+    <div class="sidebar-overlay" id="sidebarOverlay" onclick="closeSidebar()"></div>
+
+    <!-- ── Main Content ── -->
+    <div class="main-content">
+      <!-- Top Bar -->
+      <header class="top-bar">
+        <button class="mobile-menu-btn" onclick="openSidebar()" aria-label="Open menu">
+          <i class="fas fa-bars"></i>
+        </button>
+      </header>
+
+      <!-- Page Scroll Area -->
+      <div class="page-scroll">
+
+  <div class="container container-wide">
+    <h1>My <span>Bookings</span></h1>
+    <p class="subtitle">Your boarding passes and travel history</p>
+
+    <div id="bookingList">
+      <div style="text-align: center; padding: 40px; color: var(--text-muted);">
+        <i class="fas fa-spinner fa-spin" style="font-size: 2.5rem; margin-bottom: 15px; color: #a855f7;"></i>
+        <p>Loading your travel passes...</p>
+      </div>
+    </div>
+  </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="toastContainer"></div>
+
+  <script src="script.js?v=10"></script>
+  <script src="ui-layout.js?v=4"></script>
+</body>
+</html>
