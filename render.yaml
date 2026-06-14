@@ -1,0 +1,20 @@
+services:
+  - type: web
+    name: busflux-backend
+    env: node
+    rootDir: backend
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: MONGO_URI
+        value: mongodb+srv://abhishek:Abhi123456789@cluster0.kis8mkj.mongodb.net/busflux?retryWrites=true&w=majority&appName=Cluster0
+      - key: JWT_SECRET
+        value: mysecretkey
+      - key: EMAIL_USER
+        value: labprograms225@gmail.com
+      - key: EMAIL_PASS
+        value: ibro loaa qplh zlfg
+      - key: RAZORPAY_KEY_ID
+        value: rzp_test_Sx34wN4yzfeLM6
+      - key: RAZORPAY_KEY_SECRET
+        value: PN67L2s4hWJ2ffbR0x7f243T
